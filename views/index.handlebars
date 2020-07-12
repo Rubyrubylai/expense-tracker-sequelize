@@ -1,24 +1,47 @@
-
-<div class="dropdown show">
-  <a class="btn btn-outline-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<div class="row">
+<div class="dropdown col-4">
+  <button class="btn btn-outline-dark dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     月份
-  </a>
+  </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
     <a class="dropdown-item" href="#">Action</a>
   </div>
 </div>
-<h6>總金額:</h6>
-<h1 style="color:orange;">25</h1>
+<div class="dropdown col-4">
+  <button class="btn btn-outline-dark dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    類別
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Action</a>
+  </div>
+</div>
+</div>
+
+<div class="row my-3">
+  <div class="col-8">
+    <div class="row">
+      <div class="col mr-auto"><h5>總金額:</h5></div>
+      <div class="col"><font size="7" style="color: orange;">25260</font></div>
+    </div>
+  </div>
+</div>
 
 <div class="row">
-    <div class="col-auto" style="background-color:#E8E8E8;"><i class="fas fa-utensils"></i></div>
-    <div class="col-auto" style="background-color:#E8E8E8;">午餐</div>
-    <div class="col-auto" style="background-color:#E8E8E8;">2019/2/5</div>
-    <div class="col-auto" style="background-color:#E8E8E8;">60</div>
-    <div class="col">
-        <button type="button" class="btn btn-primary">修改</button>
-        <button type="button" class="btn btn-danger">刪除</button>
+  <div class="col-8">
+    <div class="row" style="background-color:#d6d6d6;">
+      <div class="col-auto my-3"><i class="fas fa-utensils fa-2x" style="color:#32ceb9;"></i></div>
+      <div class="col-auto mr-auto my-2">
+        <span>午餐</span>
+        <div><small>2019/2/5</small></div>
+      </div>
+      <div class="col-auto my-3">60</div>
     </div>
+  </div>
+  <div class="col my-3">
+      <button type="button" class="btn btn-primary">修改</button>
+      <button type="button" class="btn btn-danger">刪除</button>
+  </div>
 </div>
-<button type="button" class="btn btn-warning mt-3">新增支出</button>
-
+<div class="col-8">
+  <center><button type="button" class="btn btn-warning mt-3 btn-lg" style="width: 200px">新增支出</button></center>
+</div>
