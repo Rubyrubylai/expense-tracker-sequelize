@@ -1,6 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
+const db = require('../models')
+const Record = require('../models/record')
+const User = require('../models/user')
+
 //登入頁面
 
 //登入
