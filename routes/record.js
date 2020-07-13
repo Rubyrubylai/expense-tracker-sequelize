@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 
 const db = require('../models')
-const Record = require('../models/record')
-const User = require('../models/user')
+const Record = db.Record
+const User = db.User
 
 //瀏覽全部支出
 router.get('/', (req, res) => {
@@ -17,7 +17,15 @@ router.get('/new', (req, res) => {
 
 //新增支出
 router.post('/new', (req, res) => {
-    res.send('hello')
+    const { name, date, category, amount } = req.body
+    Record.create({
+        name,
+        date,
+        category,
+        amount,
+        UserId: '2'
+    }).then(record => { return res.redirect('/') })
+
 })
 
 //修改支出頁面

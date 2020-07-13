@@ -1,10 +1,12 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const app = express()
-
+const bodyParser = require('body-parser')
 
 app.engine('handlebars', exphbs())
 app.set('view engine', 'handlebars')
+
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/', require('./routes/home'))
 app.use('/records', require('./routes/record'))

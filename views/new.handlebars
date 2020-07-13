@@ -1,23 +1,31 @@
-<form action="">
+<form action="/records/new" method="POST">
     <div class="row">
         <div class="col-2"><small>*必填欄位</small></div>
         <div class="col-10"><center style="font-size: 20px;">請輸入你的支出</center></div>
     </div>
     <div class="row my-4">
         <div class="col-2"><label for="name">名稱*:</label></div>
-        <div class="col-10"><input type="text" class="form-control" id="name"></div>
+        <div class="col-10"><input type="text" class="form-control" id="name" name="name"></div>
     </div>
     <div class="row my-4">
         <div class="col-2"><label for="date">日期*:</label></div>
-        <div class="col-10"><input type="date" class="form-control" id="date"></div>
+        <div class="col-10"><input type="date" class="form-control" id="date" name="date"></div>
     </div>
     <div class="row my-4">
         <div class="col-2"><label for="category">類別*:</label></div>
-        <div class="col-10"><input type="text" class="form-control" id="category"></div>
+        <div class="col-10">
+            <select class="form-control" id="category" name="category">
+                <option>家居物業</option>
+                <option>交通出行</option>
+                <option>休閒娛樂</option>
+                <option>餐飲食品</option>
+                <option>其他</option>
+            </select>
+        </div>
     </div>
     <div class="row my-4">
         <div class="col-2"><label for="amount">金額*:</label></div>
-        <div class="col-10"><input type="text" class="form-control" id="amount"></div>
+        <div class="col-10"><input type="number" class="form-control" id="amount" name="amount"></div>
     </div>
     <div class="row">
         <div class="col-2"></div>
