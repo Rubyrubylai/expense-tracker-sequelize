@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const passport = require('passport')
 
 const db = require('../models')
 const Record = db.Record
@@ -11,8 +12,11 @@ router.get('/login', (req, res) => {
 })
 
 //登入
-router.post('/login', (req, res) => {
-    
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/users/login'
+    })(req, res, next)
 })
 
 //註冊頁面
@@ -21,8 +25,15 @@ router.get('/register', (req, res) => {
 })
 
 //註冊
-router.post('/login', (req, res) => {
-
+router.post('/register', (req, res) => {
+    const { name, email, password, password2 } = req.body
+    User.create({
+        name,
+        email,
+        password
+    })
+    .then(user => { return res.redirect('/users/login') })
+    .catch(err => console.error(err))
 })
 
 //登出頁面
