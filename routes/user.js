@@ -45,6 +45,7 @@ router.post('/register', (req, res) => {
 
 //登出頁面
 router.get('/logout', (req, res) => {
+    req.logout()
     return res.redirect('/')
 })
 
