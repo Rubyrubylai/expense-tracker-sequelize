@@ -1,20 +1,28 @@
 <div class="row">
-<div class="dropdown col-4">
-  <button class="btn btn-outline-dark dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    月份
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="#">Action</a>
+  <div class="dropdown col-4">
+    <button class="btn btn-outline-dark dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      月份
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      {{#each month}}
+      <a class="dropdown-item" href="#">{{this}}</a>
+      {{/each}}
+    </div>
   </div>
-</div>
-<div class="dropdown col-4">
-  <button class="btn btn-outline-dark dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    類別
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="#">Action</a>
+  <div class="dropdown col-4">
+    <form action="/" method="GET">
+    <button class="btn btn-outline-dark dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      類別
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" name="category">
+      <button class="dropdown-item" type="submit" name="家居物業">家居物業</button>
+      <button class="dropdown-item" type="submit" name="交通出行">交通出行</button>
+      <button class="dropdown-item" type="submit" name="休閒娛樂">休閒娛樂</button>
+      <button class="dropdown-item" type="submit" name="餐飲食品">餐飲食品</button>
+      <button class="dropdown-item" type="submit" name="其他">其他</button>
+    </div>
+    </form>
   </div>
-</div>
 </div>
 
 <div class="row my-3">
@@ -29,7 +37,23 @@
 <div class="row">
   <div class="col-8">
     <div class="row" style="background-color:#d6d6d6;">
-      <div class="col-auto my-3"><i class="fas fa-utensils fa-2x" style="color:#32ceb9;"></i></div>
+      <div class="col-auto my-3">
+        {{#ifEquals this.category "家居物業"}}
+        <i class="fas fa-home fa-2x" style="color:#32ceb9;"></i>
+        {{/ifEquals}}
+        {{#ifEquals this.category "交通出行"}}
+        <i class="fas fa-shuttle-van fa-2x" style="color:#32ceb9;"</i>
+        {{/ifEquals}}
+        {{#ifEquals this.category "休閒娛樂"}}
+        <i class="fas fa-grin-beam fa-2x" style="color:#32ceb9;"></i>
+        {{/ifEquals}}
+        {{#ifEquals this.category "餐飲食品"}}
+        <i class="fas fa-utensils fa-2x" style="color:#32ceb9;"></i>
+        {{/ifEquals}}
+        {{#ifEquals this.category "其他"}}
+        <i class="fas fa-pen fa-2x" style="color:#32ceb9;"></i>
+        {{/ifEquals}}
+      </div>
       <div class="col-auto mr-auto my-2">
         <span>{{this.name}}</span>
         <div><small>{{this.date}}</small></div>
@@ -37,7 +61,7 @@
       <div class="col-auto my-3">{{this.amount}}</div>
     </div>    
   </div>
-  <div class="col-4">
+  <div class="col-4 my-2">
       <a href="/records/{{this.id}}/edit" type="button" class="btn btn-primary">修改</a>
       <form action="/records/{{this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
         <button type="submit" class="btn btn-danger">刪除</button>

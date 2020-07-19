@@ -18,8 +18,14 @@ router.get('/', auth, (req, res) => {
 		records.forEach(record => {
 			totalAmount += record.amount
 			return record.date = record.date.toISOString().slice(0,10)
-		})  
-		return res.render('index', { records: records, totalAmount: totalAmount })
+		})
+		let month =[]
+		for (i=1; i<=12; i++){
+			month.push(i+'月')
+		}
+		console.log(req.query.category)
+		//if (req.body.category)
+		return res.render('index', { records: records, totalAmount: totalAmount, month: month })
 	})
 	.catch(err => console.error(err))
 })

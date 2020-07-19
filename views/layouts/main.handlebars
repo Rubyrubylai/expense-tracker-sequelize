@@ -10,6 +10,11 @@
 <body>
     <nav class="navbar navbar-light bg-light">
         <a href="/" class="navbar-brand mb-0 h1">家庭記帳本</a>
+        {{#if isAuthenticated}}
+        <a type="button" href="/users/logout" class="btn btn-outline-dark">登出</a>
+        {{else}}
+        <a type="button" href="/users/login" class="btn btn-outline-dark">登入</a>
+        {{/if}}
     </nav>
     <div class="container mt-3">
         {{{body}}}

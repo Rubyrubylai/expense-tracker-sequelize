@@ -29,6 +29,12 @@ handlebars.registerHelper('ifEquals', (a, b ,options) => {
 
 app.use(methodOverride('_method'))
 
+app.use((req, res, next) => {
+    res.locals.user = req.user
+    res.locals.isAuthenticated = req.isAuthenticated
+    next()
+})
+
 app.use('/', require('./routes/home'))
 app.use('/records', require('./routes/record'))
 app.use('/users', require('./routes/user'))
