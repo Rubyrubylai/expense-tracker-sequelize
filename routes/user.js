@@ -27,7 +27,7 @@ router.get('/register', (req, res) => {
 
 //註冊
 router.post('/register', (req, res) => {
-    const { name, email, password, password2 } = req.body
+    const { name, email, password } = req.body
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(password, salt, (err, hash) => {
             if (err) throw err
@@ -36,7 +36,7 @@ router.post('/register', (req, res) => {
                 email,
                 password: hash
             })
-            .then(user => { return res.redirect('/users/login') })
+            .then(user => { return res.redirect('/') })
             .catch(err => console.error(err))
         })
     })

@@ -1,23 +1,39 @@
-<form action="">
+<form action="/records/{{record.id}}/edit?_method=PUT" method="POST">
     <div class="row">
         <div class="col-2"><small>*必填欄位</small></div>
-        <div class="col-10"><center style="font-size: 20px;">請修改你的支出</center></div>
+        <div class="col-10">
+            <center style="font-size: 20px;">請修改你的支出</center>
+        </div>
     </div>
     <div class="row my-4">
         <div class="col-2"><label for="name">名稱*:</label></div>
-        <div class="col-10"><input type="text" class="form-control" id="name"></div>
+        <div class="col-10">
+            <input type="text" class="form-control" id="name" name="name" value="{{record.name}}">
+        </div>
     </div>
     <div class="row my-4">
         <div class="col-2"><label for="date">日期*:</label></div>
-        <div class="col-10"><input type="date" class="form-control" id="date"></div>
+        <div class="col-10">
+            <input type="date" class="form-control" id="date" name="date" value="{{record.date}}">
+        </div>
     </div>
     <div class="row my-4">
         <div class="col-2"><label for="category">類別*:</label></div>
-        <div class="col-10"><input type="text" class="form-control" id="category"></div>
+        <div class="col-10">
+            <select class="form-control" id="category" name="category">
+                <option {{#ifEquals record.category '家居物業'}} selected {{/ifEquals}}>家居物業</option>
+                <option {{#ifEquals record.category '交通出行'}} selected {{/ifEquals}}>交通出行</option>
+                <option {{#ifEquals record.category '休閒娛樂'}} selected {{/ifEquals}}>休閒娛樂</option>
+                <option {{#ifEquals record.category '餐飲食品'}} selected {{/ifEquals}}>餐飲食品</option>
+                <option {{#ifEquals record.category '其他'}} selected {{/ifEquals}}>其他</option>
+            </select>
+        </div>
     </div>
     <div class="row my-4">
         <div class="col-2"><label for="amount">金額*:</label></div>
-        <div class="col-10"><input type="text" class="form-control" id="amount"></div>
+        <div class="col-10">
+            <input type="text" class="form-control" id="amount"name="amount" value="{{record.amount}}">
+        </div>
     </div>
     <div class="row">
         <div class="col-2"></div>
