@@ -14,17 +14,26 @@ router.get('/', auth, (req, res) => {
 		nest: true
 	 })
 	.then(records => {
+		//篩選月份
+		if (req.query.month) {
+			records = records.filter(record => { return record.date.getMonth() === req.query.month-1 })		
+		}
+		//篩選類別
+		if (req.query.category) {
+			records = records.filter(record => { return record.category === req.query.category })			
+		}
+		//總金額
 		var totalAmount = 0
 		records.forEach(record => {
 			totalAmount += record.amount
 			return record.date = record.date.toISOString().slice(0,10)
 		})
+		//月份
 		let month =[]
 		for (i=1; i<=12; i++){
-			month.push(i+'月')
+			month.push(i)
 		}
-		console.log(req.query.category)
-		//if (req.body.category)
+		
 		return res.render('index', { records: records, totalAmount: totalAmount, month: month })
 	})
 	.catch(err => console.error(err))

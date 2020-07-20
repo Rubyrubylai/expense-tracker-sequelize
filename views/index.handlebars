@@ -1,26 +1,28 @@
 <div class="row">
   <div class="dropdown col-4">
-    <button class="btn btn-outline-dark dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      月份
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      {{#each month}}
-      <a class="dropdown-item" href="#">{{this}}</a>
-      {{/each}}
-    </div>
+    <form action="/records" method="GET">
+      <button class="btn btn-outline-dark dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        月份
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        {{#each month}}
+        <button type="submit" class="dropdown-item" name="month" value="{{this}}">{{this}}月</a>
+        {{/each}}
+      </div>
+    </form>
   </div>
   <div class="dropdown col-4">
-    <form action="/" method="GET">
-    <button class="btn btn-outline-dark dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      類別
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" name="category">
-      <button class="dropdown-item" type="submit" name="家居物業">家居物業</button>
-      <button class="dropdown-item" type="submit" name="交通出行">交通出行</button>
-      <button class="dropdown-item" type="submit" name="休閒娛樂">休閒娛樂</button>
-      <button class="dropdown-item" type="submit" name="餐飲食品">餐飲食品</button>
-      <button class="dropdown-item" type="submit" name="其他">其他</button>
-    </div>
+    <form action="/records" method="GET">
+      <button class="btn btn-outline-dark dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        類別
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <button class="dropdown-item" type="submit" name="category" value="家居物業">家居物業</button>
+        <button class="dropdown-item" type="submit" name="category" value="交通出行">交通出行</button>
+        <button class="dropdown-item" type="submit" name="category" value="休閒娛樂">休閒娛樂</button>
+        <button class="dropdown-item" type="submit" name="category" value="餐飲食品">餐飲食品</button>
+        <button class="dropdown-item" type="submit" name="category" value="其他">其他</button>
+      </div>
     </form>
   </div>
 </div>
