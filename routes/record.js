@@ -33,7 +33,7 @@ router.get('/', auth, (req, res) => {
 		for (i=1; i<=12; i++){
 			month.push(i)
 		}
-		
+
 		return res.render('index', { records: records, totalAmount: totalAmount, month: month })
 	})
 	.catch(err => console.error(err))
@@ -56,7 +56,6 @@ router.post('/new', auth, (req, res) => {
 	})
 	.then(record => { return res.redirect('/') })
 	.catch(err => console.error(err))
-
 })
 
 //修改支出頁面
