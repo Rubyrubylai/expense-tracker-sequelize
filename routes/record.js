@@ -47,22 +47,30 @@ router.get('/new', auth, (req, res) => {
 //新增支出
 router.post('/new', auth, (req, res) => {
 	const { name, date, category, amount } = req.body
-	Record.create({
-		name,
-		date,
-		category,
-		amount,
-		UserId: req.user.id
-	})
-	.then(record => { return res.redirect('/') })
-	.catch(err => console.error(err))
+	let errors = []
+	if (!name || !date || !category || !amount) {
+		errors.push({ messages: '所有欄位皆為必填' })
+		return res.render('new', { name, date, category, amount, errors })
+	} else {
+		Record.create({
+			name,
+			date,
+			category,
+			amount,
+			UserId: req.user.id
+		})
+		.then(record => { return res.redirect('/') })
+		.catch(err => console.error(err))
+	}
+	
 })
 
 //修改支出頁面
 router.get('/:id/edit', auth, (req, res) => {
 	Record.findOne({ where: { id: req.params.id, UserId: req.user.id } })
 	.then(record => { 
-		return res.render('edit', { record: record.get() }) 
+		const date = record.date.toISOString().slice(0,10)
+		return res.render('edit', { record: record.get(), date: date }) 
 	})
 	.catch(err => console.error(err))
 })
@@ -71,13 +79,21 @@ router.get('/:id/edit', auth, (req, res) => {
 router.put('/:id/edit', auth, (req, res) => {
 	Record.findOne({ where: { id: req.params.id, UserId: req.user.id } })
 	.then(record => {
-		record.name = req.body.name
-		record.date = req.body.date
-		record.category = req.body.category
-		record.amount = req.body.amount
-		return record.save()
+		const { name, date, category, amount } = req.body
+		const { id } = req.params
+		let errors = []
+		if (!name || !date || !category || !amount) {
+			errors.push({ messages: '所有欄位皆為必填' })
+			return res.render('edit', { record: { id, name, category, amount }, date, errors })
+		} else {
+				record.name = req.body.name
+				record.date = req.body.date
+				record.category = req.body.category
+				record.amount = req.body.amount
+				record.save()
+				return res.redirect('/')
+			}
 	})
-	.then(record => { return res.redirect('/') })
 	.catch(err => console.error(err))
 })
 

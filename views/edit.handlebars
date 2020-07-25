@@ -14,7 +14,7 @@
     <div class="row my-4">
         <div class="col-2"><label for="date">日期*:</label></div>
         <div class="col-10">
-            <input type="date" class="form-control" id="date" name="date" value="{{record.date}}">
+            <input type="date" class="form-control" id="date" name="date" value="{{date}}">
         </div>
     </div>
     <div class="row my-4">
@@ -35,6 +35,7 @@
             <input type="text" class="form-control" id="amount"name="amount" value="{{record.amount}}">
         </div>
     </div>
+    {{>messages}}
     <div class="row">
         <div class="col-2"></div>
         <div class="col-10">
