@@ -11,6 +11,8 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
 
+app.use(express.static('public'))
+
 app.engine('handlebars', exphbs({ defaultlayout: 'main' }))
 app.set('view engine', 'handlebars')
 
