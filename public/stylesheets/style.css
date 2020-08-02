@@ -9,3 +9,17 @@
     width: 50%;
   }
 }
+
+.nav li a:hover, .nav li a:focus{
+  color: black;
+}
+
+.nav li {
+  display: inline-block;
+  color: black;
+}
+
+.nav li a{
+  color: rgb(163, 163, 163);
+  text-decoration: none;
+}
