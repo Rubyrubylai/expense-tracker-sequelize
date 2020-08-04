@@ -6,13 +6,13 @@ module.exports = {
       type: Sequelize.INTEGER,
       allowNull: false,
       reference: {
-        model: 'Users',
-        key: 'id'
-      }
-    })
+        models: 'Users',
+        key: 'id',
+      },
+    });
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('Incomes', 'UserId')
+    return queryInterface.removeColumn('Incomes', 'UserId');
   }
 };

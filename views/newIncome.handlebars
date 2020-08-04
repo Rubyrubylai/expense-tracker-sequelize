@@ -1,0 +1,42 @@
+<form action="/incomes/new" method="POST">
+    <div class="row my-4">
+        <div class="col-2"><small>*必填欄位</small></div>
+        <div class="col-10"><center>請輸入你的收入</center></div> 
+    </div>
+    <div class="row my-4">
+        <div class="col-2"><label for="name">名稱*:</label></div>
+        <div class="col-10"><input type="text" class="form-control" id="name" name="name"></div>
+    </div>
+    <div class="row my-4">
+        <div class="col-2">日期*:</div>
+        <div class="col-10">
+            <input type="date" class="form-control" name="date">
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-2">類別*:</div>
+        <div class="col-10">
+            <select id="category" class="form-control" name="category">
+                <option value="類別">類別</option>
+                <option value="交通出行">交通出行</option>
+                <option value="家居物業">家居物業</option>
+                <option value="休閒娛樂">休閒娛樂</option>
+                <option value="餐飲食品">餐飲食品</option>
+                <option value="其他 ">其他 </option>
+            </select>
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-2">金額*:</div>
+        <div class="col-10">
+            <input type="number" class="form-control" name="amount">
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col-2"></div>
+        <div class="col-10">
+            <center><button type="submit" class="btn btn-warning">新增收入</button></center>
+        </div>
+    </div>
+    
+</form>

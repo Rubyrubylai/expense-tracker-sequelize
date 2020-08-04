@@ -29,24 +29,42 @@
         </div>
     </div>
 </div>
+{{#each incomes}}
 <div class="row">
     <div class="col-8">
         <div class="row" style="background-color:#d6d6d6;">
             <div class="col-auto my-auto">
-                <i class="fas fa-utensils fa-2x"></i>
+                {{#ifEquals this.category "家居物業"}}
+                <i class="fas fa-home fa-2x" style="color:#32ceb9;"></i>
+                {{/ifEquals}}
+                {{#ifEquals this.category "交通出行"}}
+                <i class="fas fa-shuttle-van fa-2x" style="color:#32ceb9;"</i>
+                {{/ifEquals}}
+                {{#ifEquals this.category "休閒娛樂"}}
+                <i class="fas fa-grin-beam fa-2x" style="color:#32ceb9;"></i>
+                {{/ifEquals}}
+                {{#ifEquals this.category "餐飲食品"}}
+                <i class="fas fa-utensils fa-2x" style="color:#32ceb9;"></i>
+                {{/ifEquals}}
+                {{#ifEquals this.category "其他"}}
+                <i class="fas fa-pen fa-2x" style="color:#32ceb9;"></i>
+                {{/ifEquals}}
             </div>
             <div class="col-auto mr-auto">
-                Thai J 
-                <div><small>2020/06/08</small></div> 
+                {{this.name}}
+                <div><small>{{this.date}}</small></div> 
             </div>
-            <div class="col-auto my-auto">2000</div>
+            <div class="col-auto my-auto">{{this.amount}}</div>
         </div>
     </div>
     <div class="col-4 my-auto">
         <button class="btn btn-primary">修改</button>
-        <button class="btn btn-danger">刪除</button>
+        <form action="/incomes/{{this.id}}/delete?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-danger">刪除</button>
+        </form>
     </div>
 </div>
+{{/each}}
 <div class="col-8 my-3">
-    <center><button class="btn btn-warning btn-lg" type="submit" style="width: 200px">新增收入</button></center>
+    <center><a href="/incomes/new" class="btn btn-warning btn-lg" style="width: 200px">新增收入</a></center>
 </div>  

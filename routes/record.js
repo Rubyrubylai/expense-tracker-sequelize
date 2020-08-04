@@ -61,8 +61,7 @@ router.post('/new', auth, (req, res) => {
 		})
 		.then(record => { return res.redirect('/') })
 		.catch(err => console.error(err))
-	}
-	
+	}	
 })
 
 //修改支出頁面
