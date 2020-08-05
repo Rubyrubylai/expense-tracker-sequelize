@@ -43,22 +43,32 @@ router.post('/new', (req, res) => {
 
 //進入編輯收入的頁面
 router.get('/:id/edit', (req, res) => {
-
+    Income.findOne({ where: { UserId: req.user.id, id: req.params.id } })
+    .then(income => {
+        const date = income.date.toISOString().slice(0,10)
+        return res.render('editIncome', { income: income.get(), date: date })
+    })
+    .catch(err => console.error(err))
 })
 
 //編輯收入
 router.put('/:id/edit', (req, res) => {
-    
+    Income.findOne({ where: { UserId: req.user.id, id: req.params.id } })
+    .then(income => {
+        const { name, date, category, amount } = req.body
+        income.name = name
+        income.date = date
+        income.category = category
+        income.amount = amount
+        income.save()
+        return res.redirect('/incomes')
+    })
+    .catch(err => console.error(err))
 })
 
 //刪除收入
 router.delete('/:id/delete', (req, res) => {
-    Income.destroy({ 
-        where: {
-            UserId: req.user.id,
-            id: req.params.id
-        } 
-    })
+    Income.destroy({ where: { UserId: req.user.id, id: req.params.id } })
     .then(income => { return res.redirect('/incomes') })
     .catch(err => console.error(err))
 })
