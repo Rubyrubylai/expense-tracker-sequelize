@@ -1,23 +1,28 @@
 <div class="row">
     <div class="col-4">
-        <div class="dropdown">
-            <button class="btn btn-outline-dark dropdown-toggle form-control" data-toggle="dropdown">月份</button>
-            <div class="dropdown-menu" >
-                <a class="dropdown-item" href="">一月</a>
+        <form action="/incomes" method="GET">
+            <div class="dropdown">
+                <button class="btn btn-outline-dark dropdown-toggle form-control" data-toggle="dropdown">月份</button>
+                <div class="dropdown-menu" >
+                    {{#each month}}
+                    <button type="submit" class="dropdown-item" name="month" value="{{this}}">{{this}}月</button>
+                    {{/each}}
+                </div>
             </div>
-        </div>
+        </form>
     </div>
     <div class="col-4">
-        <div class="dropdown">
-            <button class="btn btn-outline-dark dropdown-toggle form-control" data-toggle="dropdown">類別</button>
-            <div class="dropdown-menu" >
-                <a class="dropdown-item" href="">家居物業</a>
-                <a class="dropdown-item" href="">交通出行</a>
-                <a class="dropdown-item" href="">休閒娛樂</a>
-                <a class="dropdown-item" href="">餐飲食品</a>
-                <a class="dropdown-item" href="">其他</a>
+        <form action="/incomes" method="GET">
+            <div class="dropdown">
+                <button class="btn btn-outline-dark dropdown-toggle form-control" data-toggle="dropdown">類別</button>
+                <div class="dropdown-menu" >
+                    <button type="submit" class="dropdown-item" name="category" value="薪水">薪水</button>
+                    <button type="submit" class="dropdown-item" name="category" value="獎金">獎金</button>
+                    <button type="submit" class="dropdown-item" name="category" value="紅利">紅利</button>
+                    <button type="submit" class="dropdown-item" name="category" value="其他">其他</button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 
@@ -25,7 +30,7 @@
     <div class="col-8">
         <div class="row">
             <div class="col mr-auto"><h5>總金額:</h5></div>
-            <div class="col"><h1>6000</h1></div>
+            <div class="col"><font size="7" style="color: orange;">{{amount}}</font></div>
         </div>
     </div>
 </div>
@@ -33,35 +38,34 @@
 <div class="row">
     <div class="col-8">
         <div class="row" style="background-color:#d6d6d6;">
-            <div class="col-auto my-auto">
-                {{#ifEquals this.category "家居物業"}}
-                <i class="fas fa-home fa-2x" style="color:#32ceb9;"></i>
+            <div class="col-2 my-3">
+                {{#ifEquals this.category "薪水"}}
+                <i class="fas fa-money-check-alt fa-2x" style="color:#32ceb9;"></i>
                 {{/ifEquals}}
-                {{#ifEquals this.category "交通出行"}}
-                <i class="fas fa-shuttle-van fa-2x" style="color:#32ceb9;"</i>
+                {{#ifEquals this.category "獎金"}}
+                <i class="fa fa-envelope-o fa-2x" style="color:#32ceb9;"></i>
                 {{/ifEquals}}
-                {{#ifEquals this.category "休閒娛樂"}}
-                <i class="fas fa-grin-beam fa-2x" style="color:#32ceb9;"></i>
-                {{/ifEquals}}
-                {{#ifEquals this.category "餐飲食品"}}
-                <i class="fas fa-utensils fa-2x" style="color:#32ceb9;"></i>
+                {{#ifEquals this.category "紅利"}}
+                <i class="fas fa-gift fa-2x" style="color:#32ceb9;"></i>
                 {{/ifEquals}}
                 {{#ifEquals this.category "其他"}}
                 <i class="fas fa-pen fa-2x" style="color:#32ceb9;"></i>
                 {{/ifEquals}}
             </div>
-            <div class="col-auto mr-auto">
+            <div class="col-auto mr-auto my-auto">
                 {{this.name}}
                 <div><small>{{this.date}}</small></div> 
             </div>
             <div class="col-auto my-auto">{{this.amount}}</div>
         </div>
     </div>
-    <div class="col-4 my-auto">
-        <a href="/incomes/{{this.id}}/edit" class="btn btn-primary">修改</a>
-        <form action="/incomes/{{this.id}}/delete?_method=DELETE" method="POST">
-            <button type="submit" class="btn btn-danger">刪除</button>
-        </form>
+    <div class="col-4">
+        <div class="row mt-3">
+            <a href="/incomes/{{this.id}}/edit" class="btn btn-primary">修改</a>
+            <form action="/incomes/{{this.id}}/delete?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger">刪除</button>
+            </form>
+        </div>
     </div>
 </div>
 {{/each}}

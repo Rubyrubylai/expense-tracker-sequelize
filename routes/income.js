@@ -14,10 +14,35 @@ router.get('/', auth, (req, res) => {
         nest: true
     })
     .then(incomes => {
+        //月份
+        let month =[]
+        for (i=1; i<=12; i++) {
+            month.push(i)
+        }
+
+        //篩選月份
+        if (req.query.month) {
+            incomes = incomes.filter(income => {
+                return income.date.getMonth()+1 === Number(req.query.month)
+            })
+        }
+
+        //篩選類別
+        if (req.query.category) {
+            incomes = incomes.filter(income => {
+                console.log(req.query)
+                return income.category === req.query.category
+            })
+        }
+
+        let amount = 0
         incomes.forEach(income => {
-          return income.date = income.date.toISOString().slice(0,10) 
+            //總額
+            amount += income.amount
+            //日期的形式
+            return income.date = income.date.toISOString().slice(0,10) 
         })
-        return res.render('income', { incomes }) 
+        return res.render('income', { incomes, amount, month }) 
     })
     .catch(err => console.error(err))
 })
