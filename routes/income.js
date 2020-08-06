@@ -9,7 +9,7 @@ const Income = db.Income
 //瀏覽全部收入
 router.get('/', auth, (req, res) => {
     Income.findAll({
-        where: {  UserId: req.user.id },
+        where: { UserId: req.user.id },
         raw: true,
         nest: true
     })
@@ -30,19 +30,18 @@ router.get('/', auth, (req, res) => {
         //篩選類別
         if (req.query.category) {
             incomes = incomes.filter(income => {
-                console.log(req.query)
                 return income.category === req.query.category
             })
         }
 
-        let amount = 0
+        var totalAmount = 0
         incomes.forEach(income => {
             //總額
-            amount += income.amount
+            totalAmount += income.amount
             //日期的形式
             return income.date = income.date.toISOString().slice(0,10) 
         })
-        return res.render('income', { incomes, amount, month }) 
+        return res.render('income', { incomes, totalAmount, month }) 
     })
     .catch(err => console.error(err))
 })
@@ -55,15 +54,22 @@ router.get('/new', (req, res) => {
 //新增收入
 router.post('/new', (req, res) => {
     const { name, date, category, amount } = req.body
-    Income.create({
-        name,
-        date,
-        category,
-        amount,
-        UserId: req.user.id
-    })
-    .then(income => { return res.redirect('/incomes') })
-    .catch(err => console.error(err))
+    if (!name || !date || !category || !amount) {
+        let errors = []
+        errors.push({ messages: '所有欄位皆為必填' })
+        return res.render('newIncome', { name, date, category, amount, errors })
+    }
+    else {
+        Income.create({
+            name,
+            date,
+            category,
+            amount,
+            UserId: req.user.id
+        })
+        .then(income => { return res.redirect('/incomes') })
+        .catch(err => console.error(err))
+    }
 })
 
 //進入編輯收入的頁面
@@ -71,7 +77,7 @@ router.get('/:id/edit', (req, res) => {
     Income.findOne({ where: { UserId: req.user.id, id: req.params.id } })
     .then(income => {
         const date = income.date.toISOString().slice(0,10)
-        return res.render('editIncome', { income: income.get(), date: date })
+        return res.render('editIncome', { income: income.get(), date })
     })
     .catch(err => console.error(err))
 })
@@ -81,12 +87,20 @@ router.put('/:id/edit', (req, res) => {
     Income.findOne({ where: { UserId: req.user.id, id: req.params.id } })
     .then(income => {
         const { name, date, category, amount } = req.body
-        income.name = name
-        income.date = date
-        income.category = category
-        income.amount = amount
-        income.save()
-        return res.redirect('/incomes')
+        const { id } = req.params
+        if (!name || !date || !category || !amount) {
+            let errors = []
+            errors.push({ messages: '所有欄位皆為必填' })
+            return res.render('editIncome', { income: { name, category, amount, id }, date, errors })
+        }
+        else {
+            income.name = name
+            income.date = date
+            income.category = category
+            income.amount = amount
+            income.save()
+            return res.redirect('/incomes')
+        }  
     })
     .catch(err => console.error(err))
 })

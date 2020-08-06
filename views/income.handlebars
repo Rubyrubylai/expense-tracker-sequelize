@@ -1,26 +1,26 @@
 <div class="row">
-    <div class="col-4">
+    <div class="dropdown col-4">
         <form action="/incomes" method="GET">
-            <div class="dropdown">
-                <button class="btn btn-outline-dark dropdown-toggle form-control" data-toggle="dropdown">月份</button>
-                <div class="dropdown-menu" >
-                    {{#each month}}
-                    <button type="submit" class="dropdown-item" name="month" value="{{this}}">{{this}}月</button>
-                    {{/each}}
-                </div>
+            <button class="btn btn-outline-dark dropdown-toggle form-control"  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                月份
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                {{#each month}}
+                <button type="submit" class="dropdown-item" name="month" value="{{this}}">{{this}}月</button>
+                {{/each}}
             </div>
         </form>
     </div>
-    <div class="col-4">
+    <div class="dropdown col-4">
         <form action="/incomes" method="GET">
-            <div class="dropdown">
-                <button class="btn btn-outline-dark dropdown-toggle form-control" data-toggle="dropdown">類別</button>
-                <div class="dropdown-menu" >
-                    <button type="submit" class="dropdown-item" name="category" value="薪水">薪水</button>
-                    <button type="submit" class="dropdown-item" name="category" value="獎金">獎金</button>
-                    <button type="submit" class="dropdown-item" name="category" value="紅利">紅利</button>
-                    <button type="submit" class="dropdown-item" name="category" value="其他">其他</button>
-                </div>
+            <button class="btn btn-outline-dark dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                類別
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <button type="submit" class="dropdown-item" name="category" value="薪水">薪水</button>
+                <button type="submit" class="dropdown-item" name="category" value="獎金">獎金</button>
+                <button type="submit" class="dropdown-item" name="category" value="紅利">紅利</button>
+                <button type="submit" class="dropdown-item" name="category" value="其他">其他</button>
             </div>
         </form>
     </div>
@@ -30,7 +30,7 @@
     <div class="col-8">
         <div class="row">
             <div class="col mr-auto"><h5>總金額:</h5></div>
-            <div class="col"><font size="7" style="color: orange;">{{amount}}</font></div>
+            <div class="col"><font size="7" style="color: orange;">{{totalAmount}}</font></div>
         </div>
     </div>
 </div>
@@ -53,19 +53,17 @@
                 {{/ifEquals}}
             </div>
             <div class="col-auto mr-auto my-auto">
-                {{this.name}}
+                <span>{{this.name}}<span>
                 <div><small>{{this.date}}</small></div> 
             </div>
             <div class="col-auto my-auto">{{this.amount}}</div>
         </div>
     </div>
-    <div class="col-4">
-        <div class="row mt-3">
-            <a href="/incomes/{{this.id}}/edit" class="btn btn-primary">修改</a>
-            <form action="/incomes/{{this.id}}/delete?_method=DELETE" method="POST">
-                <button type="submit" class="btn btn-danger">刪除</button>
-            </form>
-        </div>
+    <div class="col-4 my-auto">
+        <a href="/incomes/{{this.id}}/edit" class="btn btn-primary">修改</a>
+        <form action="/incomes/{{this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
+            <button type="submit" class="btn btn-danger">刪除</button>
+        </form>
     </div>
 </div>
 {{/each}}

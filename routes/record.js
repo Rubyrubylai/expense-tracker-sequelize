@@ -16,11 +16,15 @@ router.get('/', auth, (req, res) => {
 	.then(records => {
 		//篩選月份
 		if (req.query.month) {
-			records = records.filter(record => { return record.date.getMonth() === req.query.month-1 })		
+			records = records.filter(record => { 
+				return record.date.getMonth() === req.query.month-1 
+			})		
 		}
 		//篩選類別
 		if (req.query.category) {
-			records = records.filter(record => { return record.category === req.query.category })			
+			records = records.filter(record => { 
+				return record.category === req.query.category 
+			})			
 		}
 		//總金額
 		var totalAmount = 0
@@ -47,11 +51,12 @@ router.get('/new', auth, (req, res) => {
 //新增支出
 router.post('/new', auth, (req, res) => {
 	const { name, date, category, amount } = req.body
-	let errors = []
 	if (!name || !date || !category || !amount) {
+		let errors = []
 		errors.push({ messages: '所有欄位皆為必填' })
 		return res.render('new', { name, date, category, amount, errors })
-	} else {
+	} 
+	else {
 		Record.create({
 			name,
 			date,
@@ -69,7 +74,7 @@ router.get('/:id/edit', auth, (req, res) => {
 	Record.findOne({ where: { id: req.params.id, UserId: req.user.id } })
 	.then(record => { 
 		const date = record.date.toISOString().slice(0,10)
-		return res.render('edit', { record: record.get(), date: date }) 
+		return res.render('edit', { record: record.get(), date }) 
 	})
 	.catch(err => console.error(err))
 })
@@ -80,15 +85,15 @@ router.put('/:id/edit', auth, (req, res) => {
 	.then(record => {
 		const { name, date, category, amount } = req.body
 		const { id } = req.params
-		let errors = []
 		if (!name || !date || !category || !amount) {
+			let errors = []
 			errors.push({ messages: '所有欄位皆為必填' })
 			return res.render('edit', { record: { id, name, category, amount }, date, errors })
 		} else {
-				record.name = req.body.name
-				record.date = req.body.date
-				record.category = req.body.category
-				record.amount = req.body.amount
+				record.name = name
+				record.date = date
+				record.category = category
+				record.amount = amount
 				record.save()
 				return res.redirect('/')
 			}

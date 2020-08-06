@@ -1,5 +1,5 @@
 <form action="/records/{{record.id}}/edit?_method=PUT" method="POST">
-    <div class="row">
+    <div class="row my-4">
         <div class="col-2"><small>*必填欄位</small></div>
         <div class="col-10">
             <center style="font-size: 20px;">請修改你的支出</center>
@@ -32,7 +32,7 @@
     <div class="row my-4">
         <div class="col-2"><label for="amount">金額*:</label></div>
         <div class="col-10">
-            <input type="text" class="form-control" id="amount"name="amount" value="{{record.amount}}">
+            <input type="number" class="form-control" id="amount" name="amount" value="{{record.amount}}">
         </div>
     </div>
     {{>messages}}

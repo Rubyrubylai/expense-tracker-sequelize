@@ -39,12 +39,12 @@
 <div class="row">
   <div class="col-8">
     <div class="row" style="background-color:#d6d6d6;">
-      <div class="col-auto my-3">
+      <div class="col-2 my-3">
         {{#ifEquals this.category "家居物業"}}
         <i class="fas fa-home fa-2x" style="color:#32ceb9;"></i>
         {{/ifEquals}}
         {{#ifEquals this.category "交通出行"}}
-        <i class="fas fa-shuttle-van fa-2x" style="color:#32ceb9;"</i>
+        <i class="fas fa-shuttle-van fa-2x" style="color:#32ceb9;"></i>
         {{/ifEquals}}
         {{#ifEquals this.category "休閒娛樂"}}
         <i class="fas fa-grin-beam fa-2x" style="color:#32ceb9;"></i>
@@ -56,14 +56,14 @@
         <i class="fas fa-pen fa-2x" style="color:#32ceb9;"></i>
         {{/ifEquals}}
       </div>
-      <div class="col-auto mr-auto my-2">
+      <div class="col-auto mr-auto my-auto">
         <span>{{this.name}}</span>
         <div><small>{{this.date}}</small></div>
       </div>
-      <div class="col-auto my-3">{{this.amount}}</div>
+      <div class="col-auto my-auto">{{this.amount}}</div>
     </div>    
   </div>
-  <div class="col-4 my-2">
+  <div class="col-4 my-auto">
       <a href="/records/{{this.id}}/edit" type="button" class="btn btn-primary">修改</a>
       <form action="/records/{{this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
         <button type="submit" class="btn btn-danger">刪除</button>
@@ -71,6 +71,6 @@
   </div>
 </div>
 {{/each}}
-<div class="col-8">
-  <center><a href="/records/new" type="button" class="btn btn-warning mt-3 btn-lg" style="width: 200px">新增支出</a></center>
+<div class="col-8 my-3">
+  <center><a href="/records/new" type="button" class="btn btn-warning btn-lg" style="width: 200px">新增支出</a></center>
 </div>
