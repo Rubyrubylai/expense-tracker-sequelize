@@ -48,16 +48,18 @@ router.get('/', auth, (req, res) => {
 
 //進入新增收入的頁面
 router.get('/new', auth, (req, res) => {
-    res.render('newIncome')
+    let income = true
+    res.render('new', { income })
 })
 
 //新增收入
 router.post('/new', auth, (req, res) => {
     const { name, date, category, amount } = req.body
+    let income = true
     if (!name || !date || !category || !amount) {
         let errors = []
         errors.push({ messages: '所有欄位皆為必填' })
-        return res.render('newIncome', { name, date, category, amount, errors })
+        return res.render('new', { income, name, date, category, amount, errors })
     }
     else {
         Income.create({
@@ -67,7 +69,7 @@ router.post('/new', auth, (req, res) => {
             amount,
             UserId: req.user.id
         })
-        .then(income => { return res.redirect('/incomes') })
+        .then(income => { return res.redirect('/') })
         .catch(err => console.error(err))
     }
 })

@@ -45,16 +45,18 @@ router.get('/', auth, (req, res) => {
 
 //新增支出頁面
 router.get('/new', auth, (req, res) => {
-	res.render('new')
+	let record = true
+	res.render('new', { record })
 })
 
 //新增支出
 router.post('/new', auth, (req, res) => {
 	const { name, date, category, amount } = req.body
+	let record = true
 	if (!name || !date || !category || !amount) {
 		let errors = []
 		errors.push({ messages: '所有欄位皆為必填' })
-		return res.render('new', { name, date, category, amount, errors })
+		return res.render('new', { record, name, date, category, amount, errors })
 	} 
 	else {
 		Record.create({
@@ -64,7 +66,7 @@ router.post('/new', auth, (req, res) => {
 			amount,
 			UserId: req.user.id
 		})
-		.then(record => { return res.redirect('/records') })
+		.then(record => { return res.redirect('/') })
 		.catch(err => console.error(err))
 	}	
 })

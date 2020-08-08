@@ -54,6 +54,12 @@ router.get('/', auth, (req, res) => {
     .catch(err => console.error(err))   
 })
 
+//進入新增收入或支出的頁面
+// router.get('/new', (req, res) => {
+//     res.render('new')
+// })
+
+
 // 進入編輯頁面(若資料庫分類收入和支出)
 // router.get('/:id/edit', (req, res) => {
 //     if (req.query.edit === 'expense') { 
