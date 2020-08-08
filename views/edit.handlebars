@@ -1,12 +1,16 @@
 <div class="form">
     {{#if record}}
-    <form action="/records/{{record.id}}/edit?_method=PUT" method="POST">
+    <form action="/records/{{id}}/edit?_method=PUT" method="POST">
+    <center style="font-size: 30px;">修改支出</center>
     {{/if}}
-        <center style="font-size: 30px;">修改支出</center>
+    {{#if income}}
+    <form action="/incomes/{{id}}/edit?_method=PUT" method="POST">
+    <center style="font-size: 30px;">修改收入</center>
+    {{/if}}     
         <div class="row my-4">
             <div class="col-2"><label for="name">名稱*:</label></div>
             <div class="col-10">
-                <input type="text" class="form-control" id="name" name="name" value="{{record.name}}">
+                <input type="text" class="form-control" id="name" name="name" value="{{name}}">
             </div>
         </div>
         <div class="row my-4">
@@ -19,18 +23,26 @@
             <div class="col-2"><label for="category">類別*:</label></div>
             <div class="col-10">
                 <select class="form-control" id="category" name="category">
-                    <option {{#ifEquals record.category '家居物業'}} selected {{/ifEquals}}>家居物業</option>
-                    <option {{#ifEquals record.category '交通出行'}} selected {{/ifEquals}}>交通出行</option>
-                    <option {{#ifEquals record.category '休閒娛樂'}} selected {{/ifEquals}}>休閒娛樂</option>
-                    <option {{#ifEquals record.category '餐飲食品'}} selected {{/ifEquals}}>餐飲食品</option>
-                    <option {{#ifEquals record.category '其他'}} selected {{/ifEquals}}>其他</option>
+                    {{#if record}}
+                    <option {{#ifEquals category '家居物業'}} selected {{/ifEquals}}>家居物業</option>
+                    <option {{#ifEquals category '交通出行'}} selected {{/ifEquals}}>交通出行</option>
+                    <option {{#ifEquals category '休閒娛樂'}} selected {{/ifEquals}}>休閒娛樂</option>
+                    <option {{#ifEquals category '餐飲食品'}} selected {{/ifEquals}}>餐飲食品</option>
+                    <option {{#ifEquals category '其他'}} selected {{/ifEquals}}>其他</option>
+                    {{/if}}
+                    {{#if income}}   
+                    <option value="薪水" {{#ifEquals category "薪水"}} selected {{/ifEquals}}>薪水</option>
+                    <option value="獎金" {{#ifEquals category "獎金"}} selected {{/ifEquals}}>獎金</option>
+                    <option value="紅利" {{#ifEquals category "紅利"}} selected {{/ifEquals}}>紅利</option>
+                    <option value="其他" {{#ifEquals category "其他"}} selected {{/ifEquals}}>其他</option>
+                    {{/if}}   
                 </select>
             </div>
         </div>
         <div class="row my-4">
             <div class="col-2"><label for="amount">金額*:</label></div>
             <div class="col-10">
-                <input type="number" class="form-control" id="amount" name="amount" value="{{record.amount}}">
+                <input type="number" class="form-control" id="amount" name="amount" value="{{amount}}">
             </div>
         </div>
         {{>messages}}

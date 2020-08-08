@@ -74,7 +74,8 @@ router.get('/:id/edit', auth, (req, res) => {
 	Record.findOne({ where: { id: req.params.id, UserId: req.user.id } })
 	.then(record => { 
 		const date = record.date.toISOString().slice(0,10)
-		return res.render('edit', { record: record.get(), date }) 
+		const { name, category, amount, id } = record.get()
+		return res.render('edit', { record, name, category, amount , id, date }) 
 	})
 	.catch(err => console.error(err))
 })
@@ -88,7 +89,7 @@ router.put('/:id/edit', auth, (req, res) => {
 		if (!name || !date || !category || !amount) {
 			let errors = []
 			errors.push({ messages: '所有欄位皆為必填' })
-			return res.render('edit', { record: { id, name, category, amount }, date, errors })
+			return res.render('edit', { record, id, name, category, amount, date, errors })
 		} else {
 				record.name = name
 				record.date = date
