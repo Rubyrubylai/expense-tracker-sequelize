@@ -38,7 +38,7 @@ router.get('/', auth, (req, res) => {
 			month.push(i)
 		}
 
-		return res.render('index', { records: records, totalAmount: totalAmount, month: month })
+		return res.render('expense', { records: records, totalAmount: totalAmount, month: month })
 	})
 	.catch(err => console.error(err))
 })
@@ -64,7 +64,7 @@ router.post('/new', auth, (req, res) => {
 			amount,
 			UserId: req.user.id
 		})
-		.then(record => { return res.redirect('/') })
+		.then(record => { return res.redirect('/records') })
 		.catch(err => console.error(err))
 	}	
 })
@@ -95,7 +95,7 @@ router.put('/:id/edit', auth, (req, res) => {
 				record.category = category
 				record.amount = amount
 				record.save()
-				return res.redirect('/')
+				return res.redirect('/records')
 			}
 	})
 	.catch(err => console.error(err))
@@ -107,7 +107,7 @@ router.delete('/:id/delete', auth, (req, res) => {
 	.then(record => {
 		record.destroy()
 	})
-	.then(record => { return res.redirect('/') })
+	.then(record => { return res.redirect('/records') })
 	.catch(err => console.error(err))
 })
 
