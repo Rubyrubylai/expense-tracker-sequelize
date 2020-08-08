@@ -99,7 +99,7 @@ router.put('/:id/edit', auth, (req, res) => {
             income.category = category
             income.amount = amount
             income.save()
-            return res.redirect('/incomes')
+            return res.redirect('/')
         }  
     })
     .catch(err => console.error(err))
@@ -108,7 +108,7 @@ router.put('/:id/edit', auth, (req, res) => {
 //刪除收入
 router.delete('/:id/delete', auth, (req, res) => {
     Income.destroy({ where: { UserId: req.user.id, id: req.params.id } })
-    .then(income => { return res.redirect('/incomes') })
+    .then(income => { return res.redirect('/') })
     .catch(err => console.error(err))
 })
 

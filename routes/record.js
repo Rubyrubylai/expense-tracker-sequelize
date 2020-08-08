@@ -95,7 +95,7 @@ router.put('/:id/edit', auth, (req, res) => {
 				record.category = category
 				record.amount = amount
 				record.save()
-				return res.redirect('/records')
+				return res.redirect('/')
 			}
 	})
 	.catch(err => console.error(err))
@@ -107,7 +107,7 @@ router.delete('/:id/delete', auth, (req, res) => {
 	.then(record => {
 		record.destroy()
 	})
-	.then(record => { return res.redirect('/records') })
+	.then(record => { return res.redirect('/') })
 	.catch(err => console.error(err))
 })
 

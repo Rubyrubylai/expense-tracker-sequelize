@@ -54,10 +54,17 @@ router.get('/', auth, (req, res) => {
     .catch(err => console.error(err))   
 })
 
-//進入編輯頁面
-router.get('/:id/edit', (req, res) => {
-    if (req.query.edit === 'expense') { return res.render('edit') }
-    if (req.query.edit === 'income') { return res.render('editIncome') }
-})
+// 進入編輯頁面(若資料庫分類收入和支出)
+// router.get('/:id/edit', (req, res) => {
+//     if (req.query.edit === 'expense') { 
+//         Record.findOne({ where: { UserId: req.user.id, id: req.params.id }}).then(record => {
+//             date = record.date.toISOString().slice(0, 10)
+//             return res.render('edit', { record: record.get(), date})
+//         })
+        
+//     }
+//     if (req.query.edit === 'income') { return res.render('editIncome') }
+// })
+
 
 module.exports = router

@@ -63,14 +63,10 @@
         </div>
     </div>
     <div class="col-4 my-auto">
-        <div class="row">
-            <form action="/{{this.id}}/edit" method="GET" class="mx-2">
-                <button type="submit" name="edit" value="income" class="btn btn-primary">修改</button>
-            </form>
-            <form action="/{{this.id}}/delete?_method=DELETE" method="POST">
-                <button type="submit" class="btn btn-danger">刪除</button>
-            </form>
-        </div>
+        <a href="/incomes/{{this.id}}/edit" class="btn btn-primary">修改</a>
+        <form action="/incomes/{{this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
+            <button type="submit" class="btn btn-danger">刪除</button>
+        </form>
     </div>
 </div>
 {{/each}}
@@ -103,15 +99,11 @@
             <div class="col-auto my-auto">{{this.amount}}</div>
         </div>
     </div>
-    <div class="col-4 my-auto">
-        <div class="row">    
-            <form action="/{{this.id}}/edit" method="GET" class="mx-2">
-                <button type="submit" name="edit" value="expense" class="btn btn-primary">修改</button>
-            </form>
-            <form action="/{{this.id}}/delete?_method=DELETE" method="POST">
+    <div class="col-4 my-auto"> 
+            <a href="/records/{{this.id}}/edit" class="btn btn-primary">修改</a>
+            <form action="/records/{{this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
                 <button type="submit" class="btn btn-danger">刪除</button>
             </form>
-        </div>
     </div>
 </div>
 {{/each}}

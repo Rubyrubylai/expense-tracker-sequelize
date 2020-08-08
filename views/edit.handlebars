@@ -1,5 +1,7 @@
 <div class="form">
+    {{#if record}}
     <form action="/records/{{record.id}}/edit?_method=PUT" method="POST">
+    {{/if}}
         <center style="font-size: 30px;">修改支出</center>
         <div class="row my-4">
             <div class="col-2"><label for="name">名稱*:</label></div>
