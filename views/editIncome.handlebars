@@ -1,44 +1,36 @@
-<form action="/incomes/{{income.id}}/edit?_method=PUT" method="POST">
-    <div class="row my-4">
-        <div class="col-2"><small>*必填欄位</small></div>
-        <div class="col-10">
-            <center style="font-size: 20px;">請修改你的收入</center>
+<div class="form">
+    <form action="/incomes/{{income.id}}/edit?_method=PUT" method="POST">
+        <center style="font-size: 30px;">修改收入</center>
+        <div class="row my-4">
+            <div class="col-2"><label for="name">名稱*:</label></div>
+            <div class="col-10">
+                <input type="text" class="form-control" id="name" value="{{income.name}}" name="name">
+            </div>
         </div>
-    </div>
-    <div class="row my-4">
-        <div class="col-2"><label for="name">名稱*:</label></div>
-        <div class="col-10">
-            <input type="text" class="form-control" id="name" value="{{income.name}}" name="name">
+        <div class="row my-4">
+            <div class="col-2"><label for="date">日期*:</label></div>
+            <div class="col-10">
+                <input type="date" class="form-control" id="date" value="{{date}}" name="date">
+            </div>
         </div>
-    </div>
-    <div class="row my-4">
-        <div class="col-2"><label for="date">日期*:</label></div>
-        <div class="col-10">
-            <input type="date" class="form-control" id="date" value="{{date}}" name="date">
+        <div class="row my-4">
+            <div class="col-2"><label for="category">類別*:</label></div>
+            <div class="col-10">
+                <select name="category" id="category" class="form-control">
+                    <option value="薪水" {{#ifEquals income.category "薪水"}} selected {{/ifEquals}}>薪水</option>
+                    <option value="獎金" {{#ifEquals income.category "獎金"}} selected {{/ifEquals}}>獎金</option>
+                    <option value="紅利" {{#ifEquals income.category "紅利"}} selected {{/ifEquals}}>紅利</option>
+                    <option value="其他" {{#ifEquals income.category "其他"}} selected {{/ifEquals}}>其他</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="row my-4">
-        <div class="col-2"><label for="category">類別*:</label></div>
-        <div class="col-10">
-            <select name="category" id="category" class="form-control">
-                <option value="薪水" {{#ifEquals income.category "薪水"}} selected {{/ifEquals}}>薪水</option>
-                <option value="獎金" {{#ifEquals income.category "獎金"}} selected {{/ifEquals}}>獎金</option>
-                <option value="紅利" {{#ifEquals income.category "紅利"}} selected {{/ifEquals}}>紅利</option>
-                <option value="其他" {{#ifEquals income.category "其他"}} selected {{/ifEquals}}>其他</option>
-            </select>
+        <div class="row my-4">
+            <div class="col-2"><label for="amount">金額*:</label></div>
+            <div class="col-10">
+                <input type="number" class="form-control" id="amount" value="{{income.amount}}" name="amount">
+            </div>
         </div>
-    </div>
-    <div class="row my-4">
-        <div class="col-2"><label for="amount">金額*:</label></div>
-        <div class="col-10">
-            <input type="number" class="form-control" id="amount" value="{{income.amount}}" name="amount">
-        </div>
-    </div>
-    {{>messages}}
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-10">
-            <center><button type="submit" class="btn btn-warning btn-lg" style="width: 200px">送出</button></center>
-        </div>
-    </div>
-</form>
+        {{>messages}}
+        <center><button type="submit" class="btn btn-warning btn-lg" style="width: 200px">送出</button></center>
+    </form>
+</div>

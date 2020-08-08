@@ -23,3 +23,10 @@
   color: rgb(163, 163, 163);
   text-decoration: none;
 }
+
+.form{
+  margin-top: 40px;
+  background-color: rgb(233, 235, 162);
+  border-radius: 8px;
+  padding: 10px;
+}

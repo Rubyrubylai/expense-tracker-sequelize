@@ -1,6 +1,6 @@
 <div class="row">
     <div class="dropdown col-4">
-        <form action="/incomes" method="GET">
+        <form action="/" method="GET">
             <button class="btn btn-outline-dark dropdown-toggle form-control"  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 月份
             </button>
@@ -12,7 +12,7 @@
         </form>
     </div>
     <div class="dropdown col-4">
-        <form action="/incomes" method="GET">
+        <form action="/" method="GET">
             <button class="btn btn-outline-dark dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 類別
             </button>
@@ -63,10 +63,14 @@
         </div>
     </div>
     <div class="col-4 my-auto">
-        <a href="/incomes/{{this.id}}/edit" class="btn btn-primary">修改</a>
-        <form action="/incomes/{{this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
-            <button type="submit" class="btn btn-danger">刪除</button>
-        </form>
+        <div class="row">
+            <form action="/{{this.id}}/edit" method="GET" class="mx-2">
+                <button type="submit" name="edit" value="income" class="btn btn-primary">修改</button>
+            </form>
+            <form action="/{{this.id}}/delete?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger">刪除</button>
+            </form>
+        </div>
     </div>
 </div>
 {{/each}}
@@ -100,10 +104,14 @@
         </div>
     </div>
     <div class="col-4 my-auto">
-        <a href="/incomes/{{this.id}}/edit" class="btn btn-primary">修改</a>
-        <form action="/incomes/{{this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
-            <button type="submit" class="btn btn-danger">刪除</button>
-        </form>
+        <div class="row">    
+            <form action="/{{this.id}}/edit" method="GET" class="mx-2">
+                <button type="submit" name="edit" value="expense" class="btn btn-primary">修改</button>
+            </form>
+            <form action="/{{this.id}}/delete?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger">刪除</button>
+            </form>
+        </div>
     </div>
 </div>
 {{/each}}

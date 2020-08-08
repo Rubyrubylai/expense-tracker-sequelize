@@ -54,4 +54,10 @@ router.get('/', auth, (req, res) => {
     .catch(err => console.error(err))   
 })
 
+//進入編輯頁面
+router.get('/:id/edit', (req, res) => {
+    if (req.query.edit === 'expense') { return res.render('edit') }
+    if (req.query.edit === 'income') { return res.render('editIncome') }
+})
+
 module.exports = router
