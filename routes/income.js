@@ -6,46 +6,6 @@ const db = require('../models')
 const User = db.User
 const Income = db.Income
 
-//瀏覽全部收入
-router.get('/', auth, (req, res) => {
-    Income.findAll({
-        where: { UserId: req.user.id },
-        raw: true,
-        nest: true
-    })
-    .then(incomes => {
-        //月份
-        let month =[]
-        for (i=1; i<=12; i++) {
-            month.push(i)
-        }
-
-        //篩選月份
-        if (req.query.month) {
-            incomes = incomes.filter(income => {
-                return income.date.getMonth()+1 === Number(req.query.month)
-            })
-        }
-
-        //篩選類別
-        if (req.query.category) {
-            incomes = incomes.filter(income => {
-                return income.category === req.query.category
-            })
-        }
-
-        var totalAmount = 0
-        incomes.forEach(income => {
-            //總額
-            totalAmount += income.amount
-            //日期的形式
-            return income.date = income.date.toISOString().slice(0,10) 
-        })
-        return res.render('income', { incomes, totalAmount, month }) 
-    })
-    .catch(err => console.error(err))
-})
-
 //進入新增收入的頁面
 router.get('/new', auth, (req, res) => {
     let income = true

@@ -10,22 +10,14 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a href="/" class="navbar-brand">家庭記帳本</a>
+        <a href="/" class="navbar-brand mr-auto">家庭記帳本</a>
         {{#if isAuthenticated}}
-        <ul class="nav mr-auto">
-            <li class="nav-item">
-                <a href="/records" class="nav-link">支出</a>
-            </li>
-            <li class="nav-item">
-                <a href="/incomes" class="nav-link"> 收入</a>
-            </li>
-        </ul>
         <a type="button" href="/users/logout" class="btn btn-outline-dark">登出</a>
         {{else}}
         <a type="button" href="/users/login" class="btn btn-outline-dark">登入</a>
         {{/if}} 
     </nav>
-    <div class="container mt-3">
+    <div class="container my-5">
         {{{body}}}
     </div>
 

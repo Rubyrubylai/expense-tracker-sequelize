@@ -15,20 +15,31 @@ router.get('/', auth, (req, res) => {
     })
     .then(incomes => {
         let incomeAmount = 0
-
+        //一開始設定record為true
+        let record = true
+        //篩選類別
+        //當點選收入時，將record的部分設為false去隱藏
+        if (req.query.income) {
+            record = false
+        }
+        else if (req.query.category) {
+            incomes = incomes.filter(income => {
+                return income.category === req.query.category
+            })
+        }
         //篩選月份
-        if (req.query.month) {
+        else if (req.query.month) {
             incomes = incomes.filter(income => {
                 return income.date.getMonth() === req.query.month-1
             })
         }
         else {
             //篩選為今天日期
-            incomes = incomes.filter(income => {
+            incomes = incomes.filter(income => {   
                 return income.date.toLocaleDateString() === new Date().toLocaleDateString('zh-TW', {timeZone: 'Asia/Taipei'})
             })
         }
-        
+
         incomes.forEach(income => {
             //日期格式
             income.date = income.date.toISOString().slice(0,10)
@@ -43,9 +54,18 @@ router.get('/', auth, (req, res) => {
         })
         .then(records => {
             let expenseAmount = 0
-
+            let income = true
+            //篩選類別
+            if (req.query.record) {
+                income = false
+            }
+            else if (req.query.category) {
+                records = records.filter(record => {
+                    return record.category === req.query.category
+                })
+            }
             //篩選月份
-            if (req.query.month) {
+            else if (req.query.month) {
                 records = records.filter(record => {
                     return record.date.getMonth() === req.query.month-1
                 })
@@ -71,7 +91,7 @@ router.get('/', auth, (req, res) => {
             //總金額
             let totalAmount = incomeAmount - expenseAmount
             
-            return res.render('index', { records, incomes, incomeAmount, expenseAmount, totalAmount, month })
+            return res.render('index', { income, record, records, incomes, incomeAmount, expenseAmount, totalAmount, month })
         })
     })
     .catch(err => console.error(err))   
