@@ -15,7 +15,6 @@ router.get('/', auth, (req, res) => {
     })
     .then(incomes => {
         let incomeAmount = 0
-        console.log(new Date().toLocaleString('zh-TW', {timeZone: 'Asia/Taipei'}).slice(0, 10))
 
         //篩選月份
         if (req.query.month) {
@@ -26,8 +25,7 @@ router.get('/', auth, (req, res) => {
         else {
             //篩選為今天日期
             incomes = incomes.filter(income => {
-                console.log(income.date.toLocaleString('zh-TW', {timeZone: 'Asia/Taipei'}).slice(0, 10))
-                return income.date.toLocaleString().slice(0, 9) === new Date().toLocaleString('zh-TW', {timeZone: 'Asia/Taipei'}).slice(0, 9)
+                return income.date.toLocaleDateString() === new Date().toLocaleDateString('zh-TW', {timeZone: 'Asia/Taipei'})
             })
         }
         
