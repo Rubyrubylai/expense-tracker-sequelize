@@ -14,9 +14,15 @@ router.get('/', auth, (req, res) => {
         nest: true
     })
     .then(incomes => {
+        //日期由小到大排序
+        incomes.sort((a, b) => {
+            return a.date - b.date
+        })
+
         let incomeAmount = 0
         //一開始設定record為true
         let record = true
+
         //篩選類別
         //當點選收入時，將record的部分設為false去隱藏
         if (req.query.income) {
@@ -53,8 +59,14 @@ router.get('/', auth, (req, res) => {
             nest: true
         })
         .then(records => {
+            //日期由小到大排序
+            records.sort((a, b) => {
+                return a.date - b.date
+            })
+
             let expenseAmount = 0
             let income = true
+
             //篩選類別
             if (req.query.record) {
                 income = false
