@@ -1,5 +1,6 @@
 # 家庭記帳本
 使用者可以新增、刪除、過濾及查看支出和收入的紀錄資訊，是管理財務的好幫手
+![image](https://github.com/Rubyrubylai/expense-tracker-sequelize/blob/master/expense-tracker.PNG)
 
 ## 環境
 + Node.js v10.15.0
@@ -7,7 +8,7 @@
 ## 安裝
 1. 開啟終端機，cd到存放專案位置並執行:
 ```
-git clone
+git clone https://github.com/Rubyrubylai/expense-tracker-sequelize.git
 ```
 
 2. 安裝套件
