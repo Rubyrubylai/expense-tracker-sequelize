@@ -79,8 +79,8 @@
             <p style="color: blue;">${{../this.amount}}</p>
         </td>
         <td>
-            <a href="/incomes/{{../this.id}}/edit" class="btn btn-primary">修改</a>
-            <form action="/incomes/{{../this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
+            <a href="/records/{{../this.id}}/editDeposit" class="btn btn-primary">修改</a>
+            <form action="/records/{{../this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
                 <button type="submit" class="btn btn-danger">刪除</button>
             </form>
         </td>
@@ -118,8 +118,8 @@
             <p style="color: red;">${{../this.amount}}</p>
         </td>
         <td>
-            <a href="/incomes/{{../this.id}}/edit" class="btn btn-primary">修改</a>
-            <form action="/incomes/{{../this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
+            <a href="/records/{{../this.id}}/editDeduct" class="btn btn-primary">修改</a>
+            <form action="/records/{{../this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
                 <button type="submit" class="btn btn-danger">刪除</button>
             </form>
         </td>
@@ -130,7 +130,7 @@
 {{/each}}
 
 <div class="add-circle">
-    <a href="/records/new/deduct">
+    <a href="/records/newDeduct">
         <button class="rounded-pill btn btn-warning btn-lg">
             <i class="fas fa-plus" style="color: white;"></i>
         </button>

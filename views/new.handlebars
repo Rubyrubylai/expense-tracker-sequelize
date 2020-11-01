@@ -1,15 +1,15 @@
 <div class="form">
     {{#if deposit}} 
-    <form action="/records/new/deposit" method="POST">
+    <form action="/records/newDeposit" method="POST">
     <input style="display: none;" type="string" name="balance" value="deposit">
-    <a href="/records/new/deposit" type="button" class="btn btn-warning" name="balance" value="deposit" id="deposit-btn">收入</a>
-    <a href="/records/new/deduct" type="button" class="btn btn-outline-warning" name="balance" value="deduct" id="deduct-btn">支出</a>
+    <a href="/records/newDeposit" type="button" class="btn btn-warning" name="balance" value="deposit" id="deposit-btn">收入</a>
+    <a href="/records/newDeduct" type="button" class="btn btn-outline-warning" name="balance" value="deduct" id="deduct-btn">支出</a>
     {{/if}}
     {{#if deduct}} 
-    <form action="/records/new/deduct" method="POST">
+    <form action="/records/newDeduct" method="POST">
     <input style="display: none;" type="string" name="balance" value="deduct">
-    <a href="/records/new/deposit" type="button" class="btn btn-outline-warning" name="balance" value="deposit" id="deposit-btn">收入</a>
-    <a href="/records/new/deduct" type="button" class="btn btn-warning" name="balance" value="deduct" id="deduct-btn">支出</a>
+    <a href="/records/newDeposit" type="button" class="btn btn-outline-warning" name="balance" value="deposit" id="deposit-btn">收入</a>
+    <a href="/records/newDeduct" type="button" class="btn btn-warning" name="balance" value="deduct" id="deduct-btn">支出</a>
     {{/if}}        
         <div class="row my-4">
             <div class="col-2"><label for="date">日期*:</label></div>
@@ -53,5 +53,3 @@
         <center><button type="submit" class="btn btn-warning btn-lg" style="width: 200px">送出</button></center>
     </form>
 </div>
-
-<script src="/index.js"></script>
