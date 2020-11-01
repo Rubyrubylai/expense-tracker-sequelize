@@ -45,40 +45,42 @@
 <ul class="list-group mb-4">
     <li class="list-group-item">
       <div class="row mt-3">
-        <div class="col"><font size="5">收入</font><p style="color: orange; font-size: 20px">{{incomeAmount}}</p></div>
-        <div class="col"><font size="5">支出</font><p size="6" style="color: orange; font-size: 20px">{{expenseAmount}}</p></div>
-        <div class="col"><font size="5">總金額</font><p size="6" style="color: orange; font-size: 20px">{{totalAmount}}</p></div>
+        <div class="col"><font size="5">收入</font><p style="color: blue; font-size: 20px">${{depositAmount}}</p></div>
+        <div class="col"><font size="5">支出</font><p size="6" style="color: red; font-size: 20px">${{deductAmount}}</p></div>
+        <div class="col"><font size="5">總金額</font><p size="6" style="color: black; font-size: 20px">${{totalAmount}}</p></div>
     </div>
     </li>
 </ul>
 
 {{#each records}}
-{{#ifEquals this.balance deposit}}
+{{#ifEquals this.balance "deposit"}}
     <table class="table">
     <thead>
-        <tr>{{this.date}}</tr>
+        <tr>{{../this.date}}</tr>
     </thead>
     <tbody>
         <tr>
         <th scope="row">
-            {{#ifEquals this.category "薪水"}}
+            {{#ifEquals ../this.category "薪水"}}
             <i class="fas fa-money-check-alt fa-2x" style="color:#32ceb9;"></i>
             {{/ifEquals}}
-            {{#ifEquals this.category "獎金"}}
+            {{#ifEquals ../this.category "獎金"}}
             <i class="fa fa-envelope-o fa-2x" style="color:#32ceb9;"></i>
             {{/ifEquals}}
-            {{#ifEquals this.category "紅利"}}
+            {{#ifEquals ../this.category "紅利"}}
             <i class="fas fa-gift fa-2x" style="color:#32ceb9;"></i>
             {{/ifEquals}}
-            {{#ifEquals this.category "其他"}}
+            {{#ifEquals ../this.category "其他"}}
             <i class="fas fa-pen fa-2x" style="color:#32ceb9;"></i>
             {{/ifEquals}}
         </th>
-        <td>{{this.name}}</td>
-        <td>{{this.amount}}</td>
+        <td>{{../this.name}}</td>
         <td>
-            <a href="/incomes/{{this.id}}/edit" class="btn btn-primary">修改</a>
-            <form action="/incomes/{{this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
+            <p style="color: blue;">${{../this.amount}}</p>
+        </td>
+        <td>
+            <a href="/incomes/{{../this.id}}/edit" class="btn btn-primary">修改</a>
+            <form action="/incomes/{{../this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
                 <button type="submit" class="btn btn-danger">刪除</button>
             </form>
         </td>
@@ -87,35 +89,37 @@
     </table>
 {{/ifEquals}}
 
-{{#ifEquals this.balance deduct}}
+{{#ifEquals this.balance "deduct"}}
     <table class="table">
     <thead>
-        <tr>{{this.date}}</tr>
+        <tr>{{../this.date}}</tr>
     </thead>
     <tbody>
         <tr>
         <th scope="row">
-            {{#ifEquals this.category "家居物業"}}
+            {{#ifEquals ../this.category "家居物業"}}
             <i class="fas fa-home fa-2x" style="color:#e08840;"></i>
             {{/ifEquals}}
-            {{#ifEquals this.category "交通出行"}}
+            {{#ifEquals ../this.category "交通出行"}}
             <i class="fas fa-shuttle-van fa-2x" style="color:#e08840;"></i>
             {{/ifEquals}}
-            {{#ifEquals this.category "休閒娛樂"}}
+            {{#ifEquals ../this.category "休閒娛樂"}}
             <i class="fas fa-grin-beam fa-2x" style="color:#e08840;"></i>
             {{/ifEquals}}
-            {{#ifEquals this.category "餐飲食品"}}
+            {{#ifEquals ../this.category "餐飲食品"}}
             <i class="fas fa-utensils fa-2x" style="color:#e08840;"></i>
             {{/ifEquals}}
-            {{#ifEquals this.category "其他"}}
+            {{#ifEquals ../this.category "其他"}}
             <i class="fas fa-pen fa-2x" style="color:#e08840;"></i>
             {{/ifEquals}}
         </th>
-        <td>{{this.name}}</td>
-        <td>{{this.amount}}</td>
+        <td>{{../this.name}}</td>
         <td>
-            <a href="/incomes/{{this.id}}/edit" class="btn btn-primary">修改</a>
-            <form action="/incomes/{{this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
+            <p style="color: red;">${{../this.amount}}</p>
+        </td>
+        <td>
+            <a href="/incomes/{{../this.id}}/edit" class="btn btn-primary">修改</a>
+            <form action="/incomes/{{../this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
                 <button type="submit" class="btn btn-danger">刪除</button>
             </form>
         </td>

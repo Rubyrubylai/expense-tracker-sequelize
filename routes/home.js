@@ -13,9 +13,9 @@ router.get('/', auth, (req, res) => {
         nest: true
     })
     .then(records => {
-        //日期由小到大排序
+        //日期由大到小排序
         records.sort((a, b) => {
-            return a.date - b.date
+            return b.date - a.date
         })
 
         //篩選收入或支出
@@ -37,33 +37,36 @@ router.get('/', auth, (req, res) => {
             })
         }
         else {
-            //篩選為今天日期
+            //篩選為這個月
             records = records.filter(records => {   
-                return records.date.toLocaleDateString() === new Date().toLocaleDateString('zh-TW', {timeZone: 'Asia/Taipei'})
+                return records.date.getMonth() === new Date().getMonth()
             })
         }
-
-        let totalAmount
+        
+        let depositAmount = 0
+        let deductAmount = 0
 
         records.forEach(records => {
             //日期格式
             records.date = records.date.toISOString().slice(0,10)
             //總額
             if (records.balance === 'deposit') {
-                totalAmount += records.amount
+                depositAmount += records.amount
             } 
             else {
-                totalAmount -= records.amount
+                deductAmount += records.amount
             }
         })
-        
+
+        let totalAmount = depositAmount - deductAmount
+
         //月份
         let month = []
         for (i=1; i<=12 ; i++) {
             month.push(i)
         }
         
-        return res.render('index', { records, totalAmount, month })
+        return res.render('index', { records, depositAmount, deductAmount, totalAmount, month })
 
     })
     .catch(err => console.error(err))   
