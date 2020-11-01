@@ -48,7 +48,10 @@ router.get('/', auth, (req, res) => {
 
         records.forEach((record, index) => {
             //日期格式
-            record.date = record.date.toISOString().slice(0,10)
+            let currentYear = record.date.getFullYear()
+            let currentMonth = record.date.getMonth() + 1
+            let currentDate = record.date.getDate()
+            record.date = currentYear + '/' + currentMonth + '/' + currentDate
             //總額
             if (record.balance === 'deposit') {
                 depositAmount += record.amount
@@ -58,7 +61,6 @@ router.get('/', auth, (req, res) => {
             }
             //如果日期相同則省略
             if (index >= 1) {
-                console.log(records[index-1])
                 if (record.date === records[index-1].date) {
                     record.date = ''
                 }
@@ -78,24 +80,5 @@ router.get('/', auth, (req, res) => {
     })
     .catch(err => console.error(err))   
 })
-
-//進入新增收入或支出的頁面
-// router.get('/new', (req, res) => {
-//     res.render('new')
-// })
-
-
-// 進入編輯頁面(若資料庫分類收入和支出)
-// router.get('/:id/edit', (req, res) => {
-//     if (req.query.edit === 'expense') { 
-//         Record.findOne({ where: { UserId: req.user.id, id: req.params.id }}).then(record => {
-//             date = record.date.toISOString().slice(0, 10)
-//             return res.render('edit', { record: record.get(), date})
-//         })
-        
-//     }
-//     if (req.query.edit === 'income') { return res.render('editIncome') }
-// })
-
 
 module.exports = router
