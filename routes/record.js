@@ -6,20 +6,22 @@ const db = require('../models')
 const Record = db.Record
 const User = db.User
 
-//新增支出頁面
-router.get('/new', auth, (req, res) => {
-	let record = true
-	res.render('new', { record })
+//新增頁面
+router.get('/new/deposit', auth, (req, res) => {
+	let deposit = true
+	res.render('new', { deposit })
 })
 
-//新增支出
-router.post('/new', auth, (req, res) => {
-	const { name, date, category, amount } = req.body
-	let record = true
-	if (!name || !date || !category || !amount) {
+router.get('/new/deduct', auth, (req, res) => {
+	let deduct = true
+	res.render('new', { deduct })
+})
+
+function add(name, date, category, amount, balance, UserId, deposit, deduct, res) {
+	if (!name || !date || !category || !amount || !balance) {
 		let errors = []
 		errors.push({ messages: '所有欄位皆為必填' })
-		return res.render('new', { record, name, date, category, amount, errors })
+		return res.render('new', { deposit, deduct, name, date, category, amount, balance, errors })
 	} 
 	else {
 		Record.create({
@@ -27,11 +29,29 @@ router.post('/new', auth, (req, res) => {
 			date,
 			category,
 			amount,
-			UserId: req.user.id
+			balance,
+			UserId
 		})
 		.then(record => { return res.redirect('/') })
 		.catch(err => console.error(err))
 	}	
+}
+
+//新增
+router.post('/new/deposit', auth, (req, res) => {
+	const { name, date, category, amount, balance } = req.body
+	const UserId =  req.user.id
+	let deduct = false
+	let deposit = true
+	add(name, date, category, amount, balance, UserId, deposit, deduct, res)
+})
+
+router.post('/new/deduct', auth, (req, res) => {
+	const { name, date, category, amount, balance } = req.body
+	const UserId =  req.user.id
+	let deduct = true
+	let deposit = false
+	add(name, date, category, amount, balance, UserId, deposit, deduct, res)
 })
 
 //修改支出頁面

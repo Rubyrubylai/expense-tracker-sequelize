@@ -2,7 +2,7 @@
 const {
   Model
 } = require('sequelize');
-const record = require('./record');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       User.hasMany(models.Record)
-      User.hasMany(models.Income)
     }
   };
   User.init({

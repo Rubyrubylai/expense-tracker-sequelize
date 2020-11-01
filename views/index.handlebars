@@ -18,7 +18,7 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <div class="dropdown-submenu">
-                    <button type="submit" class="dropdown-item" name="income" value="收入">收入</button>
+                    <button type="submit" class="dropdown-item" name="balance" value="deposit">收入</button>
                     <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
                         <button type="submit" class="dropdown-item" name="category" value="薪水">薪水</button>
                         <button type="submit" class="dropdown-item" name="category" value="獎金">獎金</button>
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="dropdown-submenu">
-                    <button type="submit" class="dropdown-item" name="record" value="支出">支出</button>
+                    <button type="submit" class="dropdown-item" name="balance" value="deduct">支出</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <button class="dropdown-item" type="submit" name="category" value="家居物業">家居物業</button>
                         <button class="dropdown-item" type="submit" name="category" value="交通出行">交通出行</button>
@@ -52,9 +52,8 @@
     </li>
 </ul>
 
-
-{{#if income}}
-    {{#each incomes}}
+{{#each records}}
+{{#ifEquals this.balance deposit}}
     <table class="table">
     <thead>
         <tr>{{this.date}}</tr>
@@ -86,11 +85,9 @@
         </tr>
     </tbody>
     </table>
-    {{/each}}
-{{/if}}
+{{/ifEquals}}
 
-{{#if record}}
-    {{#each records}}
+{{#ifEquals this.balance deduct}}
     <table class="table">
     <thead>
         <tr>{{this.date}}</tr>
@@ -125,35 +122,13 @@
         </tr>
     </tbody>
     </table>
-    {{/each}}
-{{/if}}
+{{/ifEquals}}
+{{/each}}
 
 <div class="add-circle">
-    <button type="submit" class="rounded-circle btn-warning btn-lg" data-toggle="modal" data-target="#add-modal">
-        <i class="fas fa-plus" style="color: white;"></i>
-    </button>
-</div>
-
-
-<div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog"  role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="show-movie-title">新增</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body" id="show-movie-body">
-            <div class="row">
-                <div class="col">
-                    <center><a href="/incomes/new" class="btn btn-outline-success btn-lg" style="width: 200px">收入</a></center>
-                </div>
-                <div class="col">
-                    <center><a href="/records/new" class="btn btn-outline-danger btn-lg" style="width: 200px">支出</a></center>
-                </div>
-            </div>                     
-        </div>
-      </div>
-    </div>
+    <a href="/records/new/deduct">
+        <button class="rounded-pill btn btn-warning btn-lg">
+            <i class="fas fa-plus" style="color: white;"></i>
+        </button>
+    </a>
 </div>

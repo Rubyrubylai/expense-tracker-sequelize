@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.addColumn('records', 'balance', {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
       allowNull: false
     })
   },

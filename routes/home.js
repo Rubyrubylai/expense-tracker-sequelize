@@ -4,107 +4,67 @@ const auth = require('../config/auth')
 
 const db = require('../models')
 const Record = db.Record
-const Income = db.Income
 
 //總覽頁面
 router.get('/', auth, (req, res) => {
-    Income.findAll({ 
+    Record.findAll({ 
         where: { UserId: req.user.id },
         raw: true,
         nest: true
     })
-    .then(incomes => {
+    .then(records => {
         //日期由小到大排序
-        incomes.sort((a, b) => {
+        records.sort((a, b) => {
             return a.date - b.date
         })
 
-        let incomeAmount = 0
-        //一開始設定record為true
-        let record = true
-
-        //篩選類別
-        //當點選收入時，將record的部分設為false去隱藏
-        if (req.query.income) {
-            record = false
+        //篩選收入或支出
+        if (req.query.balance) {
+            records = records.filter(records => {
+                return records.balance === req.query.balance
+            })
         }
+        //篩選類別
         else if (req.query.category) {
-            incomes = incomes.filter(income => {
-                return income.category === req.query.category
+            records = records.filter(records => {
+                return records.category === req.query.category
             })
         }
         //篩選月份
         else if (req.query.month) {
-            incomes = incomes.filter(income => {
-                return income.date.getMonth() === req.query.month-1
+            records = records.filter(records => {
+                return records.date.getMonth() === req.query.month-1
             })
         }
         else {
             //篩選為今天日期
-            incomes = incomes.filter(income => {   
-                return income.date.toLocaleDateString() === new Date().toLocaleDateString('zh-TW', {timeZone: 'Asia/Taipei'})
+            records = records.filter(records => {   
+                return records.date.toLocaleDateString() === new Date().toLocaleDateString('zh-TW', {timeZone: 'Asia/Taipei'})
             })
         }
 
-        incomes.forEach(income => {
+        let totalAmount
+
+        records.forEach(records => {
             //日期格式
-            income.date = income.date.toISOString().slice(0,10)
+            records.date = records.date.toISOString().slice(0,10)
             //總額
-            incomeAmount += income.amount
-        })
-
-        Record.findAll({ 
-            where: { UserId: req.user.id },
-            raw: true,
-            nest: true
-        })
-        .then(records => {
-            //日期由小到大排序
-            records.sort((a, b) => {
-                return a.date - b.date
-            })
-
-            let expenseAmount = 0
-            let income = true
-
-            //篩選類別
-            if (req.query.record) {
-                income = false
-            }
-            else if (req.query.category) {
-                records = records.filter(record => {
-                    return record.category === req.query.category
-                })
-            }
-            //篩選月份
-            else if (req.query.month) {
-                records = records.filter(record => {
-                    return record.date.getMonth() === req.query.month-1
-                })
-            }
+            if (records.balance === 'deposit') {
+                totalAmount += records.amount
+            } 
             else {
-                //篩選為今天日期
-                records = records.filter(record => {
-                    return record.date.toISOString().slice(0, 10) === new Date().toISOString().slice(0, 10)
-                })
+                totalAmount -= records.amount
             }
-
-            records.forEach(record => {
-                record.date = record.date.toISOString().slice(0,10)
-                expenseAmount += record.amount
-            })
-
-            //月份
-            let month = []
-            for (i=1; i<=12 ; i++) {
-                month.push(i)
-            }
-
-            //總金額
-            let totalAmount = incomeAmount - expenseAmount
-            
-            return res.render('index', { income, record, records, incomes, incomeAmount, expenseAmount, totalAmount, month })
         })
+        
+        //月份
+        let month = []
+        for (i=1; i<=12 ; i++) {
+            month.push(i)
+        }
+        
+        return res.render('index', { records, totalAmount, month })
+
     })
     .catch(err => console.error(err))   
 })
