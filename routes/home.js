@@ -46,15 +46,22 @@ router.get('/', auth, (req, res) => {
         let depositAmount = 0
         let deductAmount = 0
 
-        records.forEach(records => {
+        records.forEach((record, index) => {
             //日期格式
-            records.date = records.date.toISOString().slice(0,10)
+            record.date = record.date.toISOString().slice(0,10)
             //總額
-            if (records.balance === 'deposit') {
-                depositAmount += records.amount
+            if (record.balance === 'deposit') {
+                depositAmount += record.amount
             } 
             else {
-                deductAmount += records.amount
+                deductAmount += record.amount
+            }
+            //如果日期相同則省略
+            if (index >= 1) {
+                console.log(records[index-1])
+                if (record.date === records[index-1].date) {
+                    record.date = ''
+                }
             }
         })
 
