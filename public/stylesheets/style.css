@@ -7,9 +7,14 @@
 
 @media screen and (min-width: 1024px) {
   .form{
-    width: 40%;
+    width: 50%;
     margin: 0 auto;
   }
+}
+
+.form {
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .container {
@@ -126,4 +131,16 @@
 
 td{
   width: 25%;
+}
+
+.btn-login, .btn-register {
+  background-color: rgb(255, 227, 70);
+  color: white;
+  font-weight:bold;
+  width: 150px;
+}
+
+.fa-facebook-square {
+  font-size:20px; 
+  color:rgb(8, 8, 190);
 }
