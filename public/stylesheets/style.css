@@ -1,13 +1,19 @@
 @media screen and (min-width: 768px) {
-  .container{
+  .form{
     width: 75%;
+    margin: 0 auto;
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .container{
-    width: 50%;
+  .form{
+    width: 40%;
+    margin: 0 auto;
   }
+}
+
+.container {
+  margin-top: 40px;
 }
 
 .nav li a:hover, .nav li a:focus{
@@ -22,13 +28,6 @@
 .nav li a{
   color: rgb(163, 163, 163);
   text-decoration: none;
-}
-
-.form{
-  margin-top: 40px;
-  background-color: rgb(233, 235, 162);
-  border-radius: 8px;
-  padding: 10px;
 }
 
 .add-circle{
@@ -51,4 +50,80 @@
   display: block;
 }
 
+.navbar-custom {
+  background-color: rgb(255, 227, 70);
+}
 
+.nav-title {
+  color: white;
+  font-weight:bold;
+}
+
+.nav-button {
+  color: white;
+  border: 2px solid white;
+  font-weight:bold;
+}
+
+.deposit-checked {
+  border: 1px solid blue;
+  border-radius: 5px;
+  color: blue;
+  width: 40%;
+  margin: 5px;
+}
+
+.deduct-checked {
+  border: 1px solid red;
+  border-radius: 5px;
+  color: red;
+  width: 40%;
+  margin: 5px;
+}
+
+.deduct-unchecked, .deposit-unchecked {
+  border: 1px solid grey;
+  border-radius: 5px;
+  color: grey;
+  width: 40%;
+  margin: 5px;
+}
+
+.btn-sort {
+  border: 1px solid black;
+  border-radius: 5px;
+  color: black;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.dropdown-custom {
+  margin: 0 auto;
+  width: 40%;
+}
+
+
+.font-deposit {
+  color: blue;
+}
+
+.font-deduct{
+  color: red;
+}
+
+.font-title{
+  font-size: 20px;
+  text-align: center;
+}
+
+.icon-deposit{
+  color: #32ceb9;
+}
+
+.icon-deduct{
+  color: #e08840;
+}
+
+td{
+  width: 25%;
+}

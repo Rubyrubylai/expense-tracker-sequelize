@@ -2,14 +2,18 @@
     {{#if deposit}} 
     <form action="/records/newDeposit" method="POST">
     <input style="display: none;" type="string" name="balance" value="deposit">
-    <a href="/records/newDeposit" type="button" class="btn btn-warning" name="balance" value="deposit" id="deposit-btn">收入</a>
-    <a href="/records/newDeduct" type="button" class="btn btn-outline-warning" name="balance" value="deduct" id="deduct-btn">支出</a>
+    <center>
+        <a href="/records/newDeposit" type="button" class="btn deposit-checked" name="balance" value="deposit">收入</a>
+        <a href="/records/newDeduct" type="button" class="btn deduct-unchecked" name="balance" value="deduct">支出</a>
+    </center>
     {{/if}}
-    {{#if deduct}} 
+    {{#if deduct}}
     <form action="/records/newDeduct" method="POST">
     <input style="display: none;" type="string" name="balance" value="deduct">
-    <a href="/records/newDeposit" type="button" class="btn btn-outline-warning" name="balance" value="deposit" id="deposit-btn">收入</a>
-    <a href="/records/newDeduct" type="button" class="btn btn-warning" name="balance" value="deduct" id="deduct-btn">支出</a>
+    <center>
+        <a href="/records/newDeposit" type="button" class="btn deposit-unchecked" name="balance" value="deposit">收入</a>
+        <a href="/records/newDeduct" type="button" class="btn deduct-checked" name="balance" value="deduct">支出</a>
+    </center>
     {{/if}}        
         <div class="row my-4">
             <div class="col-2"><label for="date">日期*:</label></div>

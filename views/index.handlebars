@@ -1,7 +1,7 @@
 <div class="row">
-    <div class="dropdown col-4">
+    <div class="dropdown dropdown-custom">
         <form action="/" method="GET">
-            <button class="btn btn-outline-dark dropdown-toggle form-control"  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-sort dropdown-toggle form-control"  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 月份
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -11,9 +11,9 @@
             </div>
         </form>
     </div>
-    <div class="dropdown col-4">
+    <div class="dropdown dropdown-custom">
         <form action="/" method="GET">
-            <button class="btn btn-outline-dark dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-sort dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 類別
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -45,9 +45,9 @@
 <ul class="list-group mb-4">
     <li class="list-group-item">
       <div class="row mt-3">
-        <div class="col"><font size="5">收入</font><p style="color: blue; font-size: 20px">${{depositAmount}}</p></div>
-        <div class="col"><font size="5">支出</font><p size="6" style="color: red; font-size: 20px">${{deductAmount}}</p></div>
-        <div class="col"><font size="5">總金額</font><p size="6" style="color: black; font-size: 20px">${{totalAmount}}</p></div>
+        <div class="col font-title">收入<p class="font-deposit">${{depositAmount}}</p></div>
+        <div class="col font-title">支出<p class="font-deduct">${{deductAmount}}</p></div>
+        <div class="col font-title">總金額<p class="font-total">${{totalAmount}}</p></div>
     </div>
     </li>
 </ul>
@@ -60,23 +60,23 @@
     </thead>
     <tbody>
         <tr>
-        <th scope="row">
+        <td>
             {{#ifEquals ../this.category "薪水"}}
-            <i class="fas fa-money-check-alt fa-2x" style="color:#32ceb9;"></i>
+            <i class="fas fa-money-check-alt fa-2x icon-deposit"></i>
             {{/ifEquals}}
             {{#ifEquals ../this.category "獎金"}}
-            <i class="fa fa-envelope-o fa-2x" style="color:#32ceb9;"></i>
+            <i class="fa fa-envelope-o fa-2x icon-deposit"></i>
             {{/ifEquals}}
             {{#ifEquals ../this.category "紅利"}}
-            <i class="fas fa-gift fa-2x" style="color:#32ceb9;"></i>
+            <i class="fas fa-gift fa-2x icon-deposit"></i>
             {{/ifEquals}}
             {{#ifEquals ../this.category "其他"}}
-            <i class="fas fa-pen fa-2x" style="color:#32ceb9;"></i>
+            <i class="fas fa-pen fa-2x icon-deposit"></i>
             {{/ifEquals}}
-        </th>
+        </td>
         <td>{{../this.name}}</td>
         <td>
-            <p style="color: blue;">${{../this.amount}}</p>
+            <p class="font-deposit">${{../this.amount}}</p>
         </td>
         <td>
             <a href="/records/{{../this.id}}/editDeposit" class="btn btn-primary">修改</a>
@@ -96,26 +96,26 @@
     </thead>
     <tbody>
         <tr>
-        <th scope="row">
+        <td>
             {{#ifEquals ../this.category "家居物業"}}
-            <i class="fas fa-home fa-2x" style="color:#e08840;"></i>
+            <i class="fas fa-home fa-2x icon-deduct"></i>
             {{/ifEquals}}
             {{#ifEquals ../this.category "交通出行"}}
-            <i class="fas fa-shuttle-van fa-2x" style="color:#e08840;"></i>
+            <i class="fas fa-shuttle-van fa-2x icon-deduct"></i>
             {{/ifEquals}}
             {{#ifEquals ../this.category "休閒娛樂"}}
-            <i class="fas fa-grin-beam fa-2x" style="color:#e08840;"></i>
+            <i class="fas fa-grin-beam fa-2x icon-deduct"></i>
             {{/ifEquals}}
             {{#ifEquals ../this.category "餐飲食品"}}
-            <i class="fas fa-utensils fa-2x" style="color:#e08840;"></i>
+            <i class="fas fa-utensils fa-2x icon-deduct"></i>
             {{/ifEquals}}
             {{#ifEquals ../this.category "其他"}}
-            <i class="fas fa-pen fa-2x" style="color:#e08840;"></i>
+            <i class="fas fa-pen fa-2x icon-deduct"></i>
             {{/ifEquals}}
-        </th>
+        </td>
         <td>{{../this.name}}</td>
         <td>
-            <p style="color: red;">${{../this.amount}}</p>
+            <p class="font-deduct">${{../this.amount}}</p>
         </td>
         <td>
             <a href="/records/{{../this.id}}/editDeduct" class="btn btn-primary">修改</a>
@@ -136,3 +136,4 @@
         </button>
     </a>
 </div>
+
