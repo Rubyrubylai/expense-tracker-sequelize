@@ -1,14 +1,7 @@
 <div class="row">
     <div class="dropdown dropdown-custom">
         <form action="/" method="GET">
-            <button class="btn btn-sort dropdown-toggle form-control"  role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                月份
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                {{#each month}}
-                <button type="submit" class="dropdown-item" name="month" value="{{this}}">{{this}}月</button>
-                {{/each}}
-            </div>
+            <input class="btn btn-sort form-control" type="month" name="monthYear" value="{{monthYear}}" onchange="this.form.submit();">
         </form>
     </div>
     <div class="dropdown dropdown-custom">

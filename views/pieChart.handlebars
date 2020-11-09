@@ -1,13 +1,24 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 <div class="balance-btn">
   {{#if deposit}}
   <center>
+      <div class="month-btn">
+        <form action="/pieChart/deposit" method="GET">
+          <input class="btn btn-sort" type="month" name="monthYear" value="{{monthYear}}" onchange="this.form.submit();">
+        </form>
+      </div>
       <a href="/pieChart/deposit" type="button" class="btn deposit-checked" name="balance" value="deposit">收入 ${{totalAmount}}</a>
       <a href="/pieChart/deduct" type="button" class="btn deduct-unchecked" name="balance" value="deduct">支出 ${{totalAmount}}</a>
   </center>
   {{/if}}
   {{#if deduct}}
   <center>
+      <div class="month-btn">
+        <form action="/pieChart/deduct" method="GET">
+            <input class="btn btn-sort" type="month" name="monthYear" value="{{monthYear}}" onchange="this.form.submit();">
+        </form>
+      </div>
       <a href="/pieChart/deposit" type="button" class="btn deposit-unchecked" name="balance" value="deposit">收入 ${{totalAmount}}</a>
       <a href="/pieChart/deduct" type="button" class="btn deduct-checked" name="balance" value="deduct">支出 ${{totalAmount}}</a>
   </center>

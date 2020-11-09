@@ -18,31 +18,39 @@ router.get('/', auth, (req, res) => {
             return b.date - a.date
         })
 
+        let month = new Date().getMonth() + 1
+        let Year = new Date().getFullYear()
+        var monthYear = Year + '-' + month
+
+        let { balance, category } = req.query
+        
+        
         //篩選收入或支出
-        if (req.query.balance) {
+        if (balance) {
             records = records.filter(records => {
-                return records.balance === req.query.balance
+                return records.balance === balance
             })
         }
         //篩選類別
-        else if (req.query.category) {
+        else if (category) {
             records = records.filter(records => {
-                return records.category === req.query.category
+                return records.category === category
             })
         }
         //篩選月份
-        else if (req.query.month) {
+        else if (req.query.monthYear) {
+            monthYear = req.query.monthYear
             records = records.filter(records => {
-                return records.date.getMonth() === req.query.month-1
+                return Number(records.date.getMonth()+1) === Number(monthYear.slice(5,7))
             })
         }
         else {
-            //篩選為這個月
+            //預設為這個月
             records = records.filter(records => {   
                 return records.date.getMonth() === new Date().getMonth()
             })
         }
-        
+   
         let depositAmount = 0
         let deductAmount = 0
 
@@ -68,14 +76,8 @@ router.get('/', auth, (req, res) => {
         })
 
         let totalAmount = depositAmount - deductAmount
-
-        //月份
-        let month = []
-        for (i=1; i<=12 ; i++) {
-            month.push(i)
-        }
         
-        return res.render('index', { records, depositAmount, deductAmount, totalAmount, month })
+        return res.render('index', { records, depositAmount, deductAmount, totalAmount, monthYear })
 
     })
     .catch(err => console.error(err))   
