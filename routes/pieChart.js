@@ -7,10 +7,15 @@ const Record = db.Record
 
 router.get('/', auth, (req, res) => {
   Record.findAll(
-    { where: { userId: req.user.id } }
+    { 
+      raw: true,
+      nest: true,
+      where: { userId: req.user.id } 
+    }
   )
   .then(records => {
-    return res.render('statistic', { records })
+    console.log(records)
+    return res.render('pieChart', { records })
   })
 })
 

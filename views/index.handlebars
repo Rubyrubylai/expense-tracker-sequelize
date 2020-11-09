@@ -52,6 +52,7 @@
     </li>
 </ul>
 
+<div>
 {{#each records}}
 {{#ifEquals this.balance "deposit"}}
     <table class="table">
@@ -59,7 +60,7 @@
         <tr>{{../this.date}}</tr>
     </thead>
     <tbody>
-        <tr>
+        <tr id="records">
         <td>
             {{#ifEquals ../this.category "薪水"}}
             <i class="fas fa-money-check-alt fa-2x icon-deposit"></i>
@@ -70,7 +71,7 @@
             {{#ifEquals ../this.category "紅利"}}
             <i class="fas fa-gift fa-2x icon-deposit"></i>
             {{/ifEquals}}
-            {{#ifEquals ../this.category "其他"}}
+            {{#ifEquals ../this.category "其他收入"}}
             <i class="fas fa-pen fa-2x icon-deposit"></i>
             {{/ifEquals}}
         </td>
@@ -109,7 +110,7 @@
             {{#ifEquals ../this.category "餐飲食品"}}
             <i class="fas fa-utensils fa-2x icon-deduct"></i>
             {{/ifEquals}}
-            {{#ifEquals ../this.category "其他"}}
+            {{#ifEquals ../this.category "其他支出"}}
             <i class="fas fa-pen fa-2x icon-deduct"></i>
             {{/ifEquals}}
         </td>
@@ -128,6 +129,7 @@
     </table>
 {{/ifEquals}}
 {{/each}}
+</div>
 
 <div class="add-circle">
     <a href="/records/newDeduct">

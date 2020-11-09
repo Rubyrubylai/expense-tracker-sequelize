@@ -19,6 +19,7 @@ router.get('/newDeduct', auth, (req, res) => {
 //新增
 function add(req, res, deposit, deduct) {
 	const { name, date, category, amount, balance } = req.body
+	console.log(req.body)
 	if (!name || !date || !category || !amount) {
 		let errors = []
 		errors.push({ messages: '所有欄位皆為必填' })
