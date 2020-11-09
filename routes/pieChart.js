@@ -17,21 +17,8 @@ router.get('/deduct', auth, (req, res) => {
   .then(records => {
     let deposit = false
     let deduct = true
-    let depositAmount = 0
-    let deductAmount = 0
-    records.forEach((record, index) => {    
-      //總額
-      if (record.balance === 'deposit') {
-          depositAmount += record.amount
-      } 
-      else {
-          deductAmount += record.amount
-      }
-    })
 
-    records = records.filter(record => record.balance === 'deduct')
-
-    show(deposit, deduct, records, depositAmount, deductAmount, req, res)
+    show(deposit, deduct, records, req, res)
   })
 })
 
@@ -47,26 +34,16 @@ router.get('/deposit', auth, (req, res) => {
   .then(records => {
     let deposit = true
     let deduct = false
-    let depositAmount = 0
-    let deductAmount = 0
-    records.forEach((record, index) => {    
-      //總額
-      if (record.balance === 'deposit') {
-          depositAmount += record.amount
-      } 
-      else {
-          deductAmount += record.amount
-      }
-    })
 
-    records = records.filter(record => record.balance === 'deposit')
-    
-    show(deposit, deduct, records, depositAmount, deductAmount, req, res)
+    show(deposit, deduct, records, req, res)
   })
 })
 
-function show(deposit, deduct, records, depositAmount, deductAmount, req, res) {
-  //預設為目前年月份
+function show(deposit, deduct, records, req, res) {
+  let depositAmount = 0
+  let deductAmount = 0
+
+  //篩選月份
   var { monthYear } = req.query
   if (monthYear) {
     records = records.filter(records => {
@@ -74,9 +51,28 @@ function show(deposit, deduct, records, depositAmount, deductAmount, req, res) {
     })
   }
   else {
+    //預設為目前年月份
     let month = new Date().getMonth() + 1
     let Year = new Date().getFullYear()
     monthYear = Year + '-' + month
+  }
+
+  records.forEach((record, index) => {    
+    //總額
+    if (record.balance === 'deposit') {
+        depositAmount += record.amount
+    } 
+    else {
+        deductAmount += record.amount
+    }
+  })
+
+  //顯示收入或支出
+  if (deposit === true) {
+    records = records.filter(record => record.balance === 'deposit')
+  } 
+  if (deduct === true) {
+    records = records.filter(record => record.balance === 'deduct')
   }
 
   //將相同分類的收入或支出合併
@@ -94,6 +90,7 @@ function show(deposit, deduct, records, depositAmount, deductAmount, req, res) {
     ...record,
     percentage: Math.round((record.amount/totalAmount)*100)
   }))
+
   return res.render('pieChart', { deposit, deduct, records, depositAmount, deductAmount, monthYear })
 }
 
