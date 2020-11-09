@@ -3,11 +3,6 @@
     width: 75%;
     margin: 0 auto;
   }
-  .chart-container{
-    position: relative;
-    height:30vh; 
-    width:50vw;
-  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -18,8 +13,20 @@
   .chart-container{
     position: relative;
     height:30vh; 
-    width:50vw;
+
+    width: 50%;
   }
+  .list{
+    width: 50%; 
+    float: right;
+  }
+  .balance-btn{
+    width: 50%;
+  }
+}
+
+.balance-btn, .chart-container{
+  margin: 20px;
 }
 
 .form {

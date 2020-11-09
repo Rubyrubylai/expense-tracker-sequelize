@@ -1,41 +1,45 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-{{#if deposit}}
-<center>
-    <a href="/pieChart/deposit" type="button" class="btn deposit-checked" name="balance" value="deposit">收入</a>
-    <a href="/pieChart/deduct" type="button" class="btn deduct-unchecked" name="balance" value="deduct">支出</a>
-</center>
-{{/if}}
-{{#if deduct}}
-<center>
-    <a href="/pieChart/deposit" type="button" class="btn deposit-unchecked" name="balance" value="deposit">收入</a>
-    <a href="/pieChart/deduct" type="button" class="btn deduct-checked" name="balance" value="deduct">支出</a>
-</center>
-{{/if}}
+<div class="balance-btn">
+  {{#if deposit}}
+  <center>
+      <a href="/pieChart/deposit" type="button" class="btn deposit-checked" name="balance" value="deposit">收入 ${{totalAmount}}</a>
+      <a href="/pieChart/deduct" type="button" class="btn deduct-unchecked" name="balance" value="deduct">支出 ${{totalAmount}}</a>
+  </center>
+  {{/if}}
+  {{#if deduct}}
+  <center>
+      <a href="/pieChart/deposit" type="button" class="btn deposit-unchecked" name="balance" value="deposit">收入 ${{totalAmount}}</a>
+      <a href="/pieChart/deduct" type="button" class="btn deduct-checked" name="balance" value="deduct">支出 ${{totalAmount}}</a>
+  </center>
+  {{/if}}
+</div>
 
 <div class="chart-container">
   <canvas id="myChart"></canvas>
 </div>
 
-<ul id="records" class="list-group">
-{{#each records}}
-  <li class="list-group-item">
-    <div style="display: inline; background-color:
-    {{#ifEquals this.category "薪水"}}#E000E0{{/ifEquals}}
-    {{#ifEquals this.category "獎金"}}#26FFFF{{/ifEquals}}
-    {{#ifEquals this.category "紅利"}}#CCCCFF{{/ifEquals}}
-    {{#ifEquals this.category "其他收入"}}#1C1CFF{{/ifEquals}}
-    {{#ifEquals this.category "家居物業"}}#FF8282{{/ifEquals}}
-    {{#ifEquals this.category "交通出行"}}#FFD78C{{/ifEquals}}
-    {{#ifEquals this.category "休閒娛樂"}}#FFFFB5{{/ifEquals}}
-    {{#ifEquals this.category "餐飲食品"}}#FFFF26{{/ifEquals}}
-    {{#ifEquals this.category "其他支出"}}#26FF26{{/ifEquals}}; 
-    padding:5px; border-radius: 10px">{{this.percentage}}%</div>
-    <div class="category" style="display: inline;">{{this.category}}</div>
-    <div class="amount" style="float: right;">{{this.amount}}</div>
-    <div style="float: right;">$</div>
-  </li>
-{{/each}}
-</ul>
+<div class="list">
+  <ul id="records">
+  {{#each records}}
+    <li class="list-group-item">
+      <div style="display: inline; background-color:
+      {{#ifEquals this.category "薪水"}}#E000E0{{/ifEquals}}
+      {{#ifEquals this.category "獎金"}}#26FFFF{{/ifEquals}}
+      {{#ifEquals this.category "紅利"}}#CCCCFF{{/ifEquals}}
+      {{#ifEquals this.category "其他收入"}}#1C1CFF{{/ifEquals}}
+      {{#ifEquals this.category "家居物業"}}#FF8282{{/ifEquals}}
+      {{#ifEquals this.category "交通出行"}}#FFD78C{{/ifEquals}}
+      {{#ifEquals this.category "休閒娛樂"}}#FFFFB5{{/ifEquals}}
+      {{#ifEquals this.category "餐飲食品"}}#FFFF26{{/ifEquals}}
+      {{#ifEquals this.category "其他支出"}}#26FF26{{/ifEquals}}; 
+      padding:5px; border-radius: 10px">{{this.percentage}}%</div>
+      <div class="category" style="display: inline;">{{this.category}}</div>
+      <div class="amount" style="float: right;">{{this.amount}}</div>
+      <div style="float: right;">$</div>
+    </li>
+  {{/each}}
+  </ul>
+</div>
 
 <script>
 const category = [

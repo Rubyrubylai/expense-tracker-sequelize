@@ -53,8 +53,8 @@ router.get('/deduct', auth, (req, res) => {
       percentage: Math.round((record.amount/totalAmount)*100)
     }))
     console.log(records)
-    
-    return res.render('pieChart', { records, deduct })
+
+    return res.render('pieChart', { records, deduct, totalAmount })
   })
 })
 
@@ -87,7 +87,7 @@ router.get('/deposit', auth, (req, res) => {
     }))
     console.log(records)
 
-    return res.render('pieChart', { records, deposit })
+    return res.render('pieChart', { records, deposit, totalAmount })
   })
 })
 
