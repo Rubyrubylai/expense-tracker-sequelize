@@ -15,40 +15,11 @@ router.get('/deduct', auth, (req, res) => {
     }
   )
   .then(records => {
+    let deposit = false
     let deduct = true
     records = records.filter(record => record.balance === 'deduct')
 
-    //預設為目前年月份
-    var { monthYear } = req.query
-    if (monthYear) {
-      records = records.filter(records => {
-          return Number(records.date.getMonth()+1) === Number(monthYear.slice(5,7))
-      })
-    }
-    else {
-      let month = new Date().getMonth() + 1
-      let Year = new Date().getFullYear()
-      monthYear = Year + '-' + month
-    }
-
-    //將相同分類的收入或支出合併
-    let totalAmount = 0
-    records.forEach((record, i) => {
-      totalAmount += Number(record.amount)  
-      if (i > 1) {
-        if (record.category === records[i-1].category) {
-          records[i-1].amount += record.amount
-          records.splice(i, 1)
-        }
-      }   
-    })
-    records = records.map(record => ({
-      ...record,
-      percentage: Math.round((record.amount/totalAmount)*100)
-    }))
-    console.log(records)
-
-    return res.render('pieChart', { records, deduct, totalAmount, monthYear })
+    show(deposit, deduct, records, req, res)
   })
 })
 
@@ -63,39 +34,43 @@ router.get('/deposit', auth, (req, res) => {
   )
   .then(records => {
     let deposit = true
+    let deduct = false
     records = records.filter(record => record.balance === 'deposit')
-     
-    //預設為目前年月份
-    var { monthYear } = req.query
-    if (monthYear) {
-      records = records.filter(records => {
-          return Number(records.date.getMonth()+1) === Number(monthYear.slice(5,7))
-      })
-    }
-    else {
-      let month = new Date().getMonth() + 1
-      let Year = new Date().getFullYear()
-      monthYear = Year + '-' + month
-    }
-
-    //將相同分類的收入或支出合併
-    let totalAmount = 0
-    records.forEach((record, i) => {
-      totalAmount += Number(record.amount)  
-      if (i > 1) {
-        if (record.category === records[i-1].category) {
-          records[i-1].amount += record.amount
-          records.splice(i, 1)
-        }
-      }   
-    })
-    records = records.map(record => ({
-      ...record,
-      percentage: Math.round((record.amount/totalAmount)*100)
-    }))
-
-    return res.render('pieChart', { records, deposit, totalAmount, monthYear })
+    
+    show(deposit, deduct, records, req, res)
   })
 })
+
+function show(deposit, deduct, records, req, res) {
+  //預設為目前年月份
+  var { monthYear } = req.query
+  if (monthYear) {
+    records = records.filter(records => {
+        return Number(records.date.getMonth()+1) === Number(monthYear.slice(5,7))
+    })
+  }
+  else {
+    let month = new Date().getMonth() + 1
+    let Year = new Date().getFullYear()
+    monthYear = Year + '-' + month
+  }
+
+  //將相同分類的收入或支出合併
+  let totalAmount = 0
+  records.forEach((record, i) => {
+    totalAmount += Number(record.amount)  
+    if (i > 1) {
+      if (record.category === records[i-1].category) {
+        records[i-1].amount += record.amount
+        records.splice(i, 1)
+      }
+    }   
+  })
+  records = records.map(record => ({
+    ...record,
+    percentage: Math.round((record.amount/totalAmount)*100)
+  }))
+  return res.render('pieChart', { deposit, deduct, records, totalAmount, monthYear })
+}
 
 module.exports = router
