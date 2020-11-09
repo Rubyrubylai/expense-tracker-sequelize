@@ -49,7 +49,7 @@ app.use('/', require('./routes/home'))
 app.use('/records', require('./routes/record'))
 app.use('/users', require('./routes/user'))
 app.use('/auth', require('./routes/auth'))
-app.use('/statistic', require('./routes/pieChart'))
+app.use('/pieChart', require('./routes/pieChart'))
 
 app.listen('3000', () => {
     console.log(`app is running on port 3000`)

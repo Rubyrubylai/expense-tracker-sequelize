@@ -3,12 +3,22 @@
     width: 75%;
     margin: 0 auto;
   }
+  .chart-container{
+    position: relative;
+    height:30vh; 
+    width:50vw;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   .form{
     width: 50%;
     margin: 0 auto;
+  }
+  .chart-container{
+    position: relative;
+    height:30vh; 
+    width:50vw;
   }
 }
 
@@ -144,11 +154,11 @@ td{
   width: 150px;
 }
 
-.btn-statistic {
+.btn-pieChart {
   color: white;
 }
 
-.btn-statistic:hover {
+.btn-pieChart:hover {
   color: black;
   text-decoration: none;
 }
