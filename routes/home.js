@@ -65,18 +65,33 @@ router.get('/', auth, (req, res) => {
             } 
             else {
                 deductAmount += record.amount
+            } 
+        })
+
+        //如果日期相同則合併
+        let tempArr = []
+        let endRecord = []
+        for (let i=0; i<records.length; i++) { 
+            if (tempArr.indexOf(records[i].date) === -1) {
+                endRecord.push({
+                    date: records[i].date,
+                    children: [records[i]]
+                })
+                tempArr.push(records[i].date)
             }
-            //如果日期相同則省略
-            if (index >= 1) {
-                if (record.date === records[index-1].date) {
-                    record.date = ''
+            else {
+                for (let j=0; j<endRecord.length; j++) {
+                    if (endRecord[j].date === records[i].date) {
+                        endRecord[j].children.push(records[i])
+                        break
+                    }
                 }
             }
-        })
+        }
 
         let totalAmount = depositAmount - deductAmount
         
-        return res.render('index', { records, depositAmount, deductAmount, totalAmount, monthYear })
+        return res.render('index', { endRecord, depositAmount, deductAmount, totalAmount, monthYear })
 
     })
     .catch(err => console.error(err))   

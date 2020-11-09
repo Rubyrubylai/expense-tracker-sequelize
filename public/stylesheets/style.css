@@ -154,6 +154,7 @@
 
 td{
   width: 25%;
+  height: 100px;
 }
 
 .btn-login, .btn-register {

@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const auth = require('../config/auth')
+const dateAfter = require('../config/date')
 
 const db = require('../models')
 const Record = db.Record
@@ -52,9 +53,7 @@ function show(deposit, deduct, records, req, res) {
   }
   else {
     //預設為目前年月份
-    let month = new Date().getMonth() + 1
-    let Year = new Date().getFullYear()
-    monthYear = Year + '-' + month
+    monthYear = dateAfter.monthYear(new Date())
   }
 
   records.forEach((record, index) => {    

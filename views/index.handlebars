@@ -45,84 +45,65 @@
     </li>
 </ul>
 
-<div>
-{{#each records}}
-{{#ifEquals this.balance "deposit"}}
-    <table class="table">
+
+{{#each endRecord}}
+<table class="table">
     <thead>
-        <tr>{{../this.date}}</tr>
+        <tr>{{this.date}}</tr>
     </thead>
+    {{#each this.children}}
     <tbody>
         <tr id="records">
         <td>
-            {{#ifEquals ../this.category "薪水"}}
+            {{#ifEquals this.category "薪水"}}
             <i class="fas fa-money-check-alt fa-2x icon-deposit"></i>
             {{/ifEquals}}
-            {{#ifEquals ../this.category "獎金"}}
+            {{#ifEquals this.category "獎金"}}
             <i class="fa fa-envelope-o fa-2x icon-deposit"></i>
             {{/ifEquals}}
-            {{#ifEquals ../this.category "紅利"}}
+            {{#ifEquals this.category "紅利"}}
             <i class="fas fa-gift fa-2x icon-deposit"></i>
             {{/ifEquals}}
-            {{#ifEquals ../this.category "其他收入"}}
+            {{#ifEquals this.category "其他收入"}}
             <i class="fas fa-pen fa-2x icon-deposit"></i>
             {{/ifEquals}}
-        </td>
-        <td>{{../this.name}}</td>
-        <td>
-            <p class="font-deposit">${{../this.amount}}</p>
-        </td>
-        <td>
-            <a href="/records/{{../this.id}}/editDeposit" class="btn btn-primary">修改</a>
-            <form action="/records/{{../this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
-                <button type="submit" class="btn btn-danger">刪除</button>
-            </form>
-        </td>
-        </tr>
-    </tbody>
-    </table>
-{{/ifEquals}}
-
-{{#ifEquals this.balance "deduct"}}
-    <table class="table">
-    <thead>
-        <tr>{{../this.date}}</tr>
-    </thead>
-    <tbody>
-        <tr>
-        <td>
-            {{#ifEquals ../this.category "家居物業"}}
+            {{#ifEquals this.category "家居物業"}}
             <i class="fas fa-home fa-2x icon-deduct"></i>
             {{/ifEquals}}
-            {{#ifEquals ../this.category "交通出行"}}
+            {{#ifEquals this.category "交通出行"}}
             <i class="fas fa-shuttle-van fa-2x icon-deduct"></i>
             {{/ifEquals}}
-            {{#ifEquals ../this.category "休閒娛樂"}}
+            {{#ifEquals this.category "休閒娛樂"}}
             <i class="fas fa-grin-beam fa-2x icon-deduct"></i>
             {{/ifEquals}}
-            {{#ifEquals ../this.category "餐飲食品"}}
+            {{#ifEquals this.category "餐飲食品"}}
             <i class="fas fa-utensils fa-2x icon-deduct"></i>
             {{/ifEquals}}
-            {{#ifEquals ../this.category "其他支出"}}
+            {{#ifEquals this.category "其他支出"}}
             <i class="fas fa-pen fa-2x icon-deduct"></i>
             {{/ifEquals}}
         </td>
-        <td>{{../this.name}}</td>
+        <td>{{this.name}}</td>
         <td>
+            {{#ifEquals this.balance "deposit"}}
+            <p class="font-deposit">${{../this.amount}}</p>
+            {{/ifEquals}}
+            {{#ifEquals this.balance "deduct"}}
             <p class="font-deduct">${{../this.amount}}</p>
+            {{/ifEquals}}
         </td>
         <td>
-            <a href="/records/{{../this.id}}/editDeduct" class="btn btn-primary">修改</a>
-            <form action="/records/{{../this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
+            <a href="/records/{{this.id}}/editDeposit" class="btn btn-primary">修改</a>
+            <form action="/records/{{this.id}}/delete?_method=DELETE" method="POST" style="display: inline;">
                 <button type="submit" class="btn btn-danger">刪除</button>
             </form>
         </td>
         </tr>
     </tbody>
-    </table>
-{{/ifEquals}}
+    {{/each}}
+</table>
 {{/each}}
-</div>
+
 
 <div class="add-circle">
     <a href="/records/newDeduct">
