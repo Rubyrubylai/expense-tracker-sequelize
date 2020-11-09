@@ -99,7 +99,7 @@ function show(deposit, deduct, records, req, res) {
       for (let j=0; j<endRecord.length; j++) {
         if (endRecord[j].category === records[i].category) {
           endRecord[j].amount += records[i].amount
-          endRecord[j].percentage += Math.round((records[i].amount/totalAmount)*100)
+          endRecord[j].percentage = Math.round((endRecord[j].amount/totalAmount)*100)
           break
         }
       }
