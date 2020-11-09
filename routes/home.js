@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const auth = require('../config/auth')
+const dateAfter = require('../config/date')
 
 const db = require('../models')
 const Record = db.Record
@@ -18,9 +19,7 @@ router.get('/', auth, (req, res) => {
             return b.date - a.date
         })
 
-        let month = new Date().getMonth() + 1
-        let Year = new Date().getFullYear()
-        var monthYear = Year + '-' + month
+        monthYear = dateAfter.monthYear(new Date())
 
         let { balance, category } = req.query
         

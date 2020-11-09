@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const auth = require('../config/auth')
-
+const dateAfter = require('../config/date')
 const db = require('../models')
 const Record = db.Record
 
@@ -19,7 +19,6 @@ router.get('/newDeduct', auth, (req, res) => {
 //新增
 function add(req, res, deposit, deduct) {
 	const { name, date, category, amount, balance } = req.body
-	console.log(req.body)
 	if (!name || !date || !category || !amount) {
 		let errors = []
 		errors.push({ messages: '所有欄位皆為必填' })
@@ -34,7 +33,10 @@ function add(req, res, deposit, deduct) {
 			balance,
 			UserId: req.user.id
 		})
-		.then(record => { return res.redirect('/') })
+		.then(record => {
+			monthYear = dateAfter.monthYear(record.date)
+			return res.redirect(`/?monthYear=${monthYear}`) 
+		})
 		.catch(err => console.error(err))
 	}	
 }
@@ -98,7 +100,8 @@ function edit(record, req, res, deposit, deduct) {
 			record.amount = amount
 			record.balance = balance
 			record.save()
-			return res.redirect('/')
+			monthYear = dateAfter.monthYear(record.date)
+			return res.redirect(`/?monthYear=${monthYear}`) 
 		}
 }
 
@@ -132,9 +135,10 @@ router.delete('/:id/delete', auth, (req, res) => {
 		where: { id: req.params.id, UserId: req.user.id } 
 	})
 	.then(record => {
+		monthYear = dateAfter.monthYear(record.date)
 		record.destroy()
+		return res.redirect(`/?monthYear=${monthYear}`) 
 	})
-	.then(record => { return res.redirect('/') })
 	.catch(err => console.error(err))
 })
 

@@ -91,7 +91,7 @@ function show(deposit, deduct, records, req, res) {
     percentage: Math.round((record.amount/totalAmount)*100)
   }))
 
-  return res.render('pieChart', { deposit, deduct, records, depositAmount, deductAmount, monthYear })
+  return res.render('pieChart', { deposit, deduct, records, totalAmount, depositAmount, deductAmount, monthYear })
 }
 
 module.exports = router
