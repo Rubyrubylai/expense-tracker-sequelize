@@ -17,9 +17,21 @@ router.get('/deduct', auth, (req, res) => {
   .then(records => {
     let deposit = false
     let deduct = true
+    let depositAmount = 0
+    let deductAmount = 0
+    records.forEach((record, index) => {    
+      //總額
+      if (record.balance === 'deposit') {
+          depositAmount += record.amount
+      } 
+      else {
+          deductAmount += record.amount
+      }
+    })
+
     records = records.filter(record => record.balance === 'deduct')
 
-    show(deposit, deduct, records, req, res)
+    show(deposit, deduct, records, depositAmount, deductAmount, req, res)
   })
 })
 
@@ -35,13 +47,25 @@ router.get('/deposit', auth, (req, res) => {
   .then(records => {
     let deposit = true
     let deduct = false
+    let depositAmount = 0
+    let deductAmount = 0
+    records.forEach((record, index) => {    
+      //總額
+      if (record.balance === 'deposit') {
+          depositAmount += record.amount
+      } 
+      else {
+          deductAmount += record.amount
+      }
+    })
+
     records = records.filter(record => record.balance === 'deposit')
     
-    show(deposit, deduct, records, req, res)
+    show(deposit, deduct, records, depositAmount, deductAmount, req, res)
   })
 })
 
-function show(deposit, deduct, records, req, res) {
+function show(deposit, deduct, records, depositAmount, deductAmount, req, res) {
   //預設為目前年月份
   var { monthYear } = req.query
   if (monthYear) {
@@ -70,7 +94,7 @@ function show(deposit, deduct, records, req, res) {
     ...record,
     percentage: Math.round((record.amount/totalAmount)*100)
   }))
-  return res.render('pieChart', { deposit, deduct, records, totalAmount, monthYear })
+  return res.render('pieChart', { deposit, deduct, records, depositAmount, deductAmount, monthYear })
 }
 
 module.exports = router

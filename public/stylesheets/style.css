@@ -13,20 +13,22 @@
   .chart-container{
     position: relative;
     height:30vh; 
-
     width: 50%;
   }
   .list{
+    margin-top: -200px;
     width: 50%; 
     float: right;
   }
-  .balance-btn{
-    width: 50%;
-  }
+
 }
 
-.balance-btn, .chart-container{
+.chart-container{
   margin: 20px;
+}
+
+.balance-btn {
+  width: 500px;
 }
 
 .form {
@@ -170,6 +172,3 @@ td{
   text-decoration: none;
 }
 
-.month-btn{
-  width: 300px;
-}
