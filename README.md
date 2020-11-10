@@ -1,5 +1,5 @@
-# 家庭記帳本
-使用者可以新增、刪除、過濾及查看支出和收入的紀錄資訊，是管理財務的好幫手
+# 記帳小幫手
+使用者可以新增、刪除、過濾及查看支出和收入的紀錄資訊，並且透過圓餅圖分析各支出或收入所佔的百分比，是管理財務的好幫手
 
 ![image](https://github.com/Rubyrubylai/expense-tracker-sequelize/blob/master/expense-tracker.PNG)
 
@@ -21,8 +21,8 @@ npm install
 
 4. 在專案的根目錄新增.env檔，以存放第三方登入設定
 ```
-FACEBOOK_ID = "your Facebook ID"
-FACEBOOK_SECRET = "your secret key"
+FACEBOOK_ID = "YOUR FACEBOOK ID"
+FACEBOOK_SECRET = "YOUR SECRET KEY"
 FACEBOOK_CALLBACK = http://localhost:3000/auth/facebook/callback
 ```
 
@@ -38,11 +38,17 @@ npm run dev
 
 |功能|URL|描述|
 |----|---|----|
-|首頁|/|查看當月的收入及支出，並從月份及類別選單篩選要查看的資料|
-|新增|/incomes/new|點選右下角的加號，新增收入|
-|新增|/records/new|點選右下角的加號，新增支出|
-|編輯|/incomes/:id/edit|點選編輯按鈕，編輯收入的名稱、日期、類別及金額|
-|編輯|/records/:id/edit|點選編輯按鈕，編輯支出的名稱、日期、類別及金額|
+|首頁|/|查看當月的收入及支出，並篩選月份及類別|
+|新增|records/newDeduct|點選右下角的新增符號，新增支出|
+|新增|records/newDeposit|進入新增支出頁面後，可以切換為新增收入|
+|編輯|/records/:id/editDeduct|點選編輯按鈕，編輯支出的名稱、日期、類別及金額|
+|編輯|/records/:id/editDeposit|進入編輯支出頁面後，可以切換為編輯收入|
+
++ 統計圖表
+|功能|URL|描述|
+|----|---|----|
+|首頁|/pieChart/deduct|查看該月的支出分析，並可切換月份|
+|首頁|/pieChart/deposit|查看該月的收入分析，並可切換月份|
 
 + 使用者功能
 
@@ -51,4 +57,4 @@ npm run dev
 |登入|/users/login|使用者登入|
 |登入|/auth/facebook|FB使用者登入|
 |登出|/users/logout|登入後即可藉由右上角的登出按鈕登出|
-|註冊|/users/register|填寫姓名、帳號及密碼註冊帳戶|
+|註冊|/users/register|填寫姓名、帳號及密碼以註冊帳戶|
