@@ -21,9 +21,9 @@ npm install
 
 4. 在專案的根目錄新增.env檔，以存放第三方登入設定
 ```
-FACEBOOK_ID=
-FACEBOOK_SECRET=
-FACEBOOK_CALLBACK=http://localhost:3000/auth/facebook/callback
+FACEBOOK_ID = "your Facebook ID"
+FACEBOOK_SECRET = "your secret key"
+FACEBOOK_CALLBACK = http://localhost:3000/auth/facebook/callback
 ```
 
 5. 執行專案
@@ -38,7 +38,7 @@ npm run dev
 
 |功能|URL|描述|
 |----|---|----|
-|首頁|/|查看當天的收入及支出，並從月份及類別選單篩選要查看的資料|
+|首頁|/|查看當月的收入及支出，並從月份及類別選單篩選要查看的資料|
 |新增|/incomes/new|點選右下角的加號，新增收入|
 |新增|/records/new|點選右下角的加號，新增支出|
 |編輯|/incomes/:id/edit|點選編輯按鈕，編輯收入的名稱、日期、類別及金額|
