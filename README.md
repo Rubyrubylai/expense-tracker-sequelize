@@ -1,7 +1,7 @@
 # 記帳小幫手
 使用者可以新增、刪除、過濾及查看支出和收入的紀錄資訊，並且透過圓餅圖分析各支出或收入所佔的百分比，是管理財務的好幫手
 
-![image](https://github.com/Rubyrubylai/expense-tracker-sequelize/tree/master/picture)
+![image](https://github.com/Rubyrubylai/expense-tracker-sequelize/blob/master/picture/expense.PNG)
 
 ## 環境
 + Node.js v10.15.0
