@@ -1,39 +1,34 @@
-<div class="row">
-    <div class="dropdown dropdown-custom">
-        <form action="/" method="GET">
-            <input class="btn btn-sort form-control" type="month" name="monthYear" value="{{monthYear}}" onchange="this.form.submit();">
-        </form>
+<form action="/" method="GET">
+    <div class="dropdown dropdown-month">
+        <input class="btn btn-sort form-control" type="month" name="monthYear" value="{{monthYear}}" onchange="this.form.submit();"> 
     </div>
-    <div class="dropdown dropdown-custom">
-        <form action="/" method="GET">
-            <button class="btn btn-sort dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                類別
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <div class="dropdown-submenu">
-                    <button type="submit" class="dropdown-item" name="balance" value="deposit">收入</button>
-                    <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
-                        <button type="submit" class="dropdown-item" name="category" value="薪水">薪水</button>
-                        <button type="submit" class="dropdown-item" name="category" value="獎金">獎金</button>
-                        <button type="submit" class="dropdown-item" name="category" value="紅利">紅利</button>
-                        <button type="submit" class="dropdown-item" name="category" value="其他">其他</button>
-                    </div>
-                </div>
-                <div class="dropdown-submenu">
-                    <button type="submit" class="dropdown-item" name="balance" value="deduct">支出</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <button class="dropdown-item" type="submit" name="category" value="家居物業">家居物業</button>
-                        <button class="dropdown-item" type="submit" name="category" value="交通出行">交通出行</button>
-                        <button class="dropdown-item" type="submit" name="category" value="休閒娛樂">休閒娛樂</button>
-                        <button class="dropdown-item" type="submit" name="category" value="餐飲食品">餐飲食品</button>
-                        <button class="dropdown-item" type="submit" name="category" value="其他">其他</button>
-                    </div>
+    <div class="dropdown dropdown-category">
+        <button class="btn btn-sort dropdown-toggle form-control" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            類別
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <div class="dropdown-submenu">
+                <button type="submit" class="dropdown-item" name="balance" value="deposit">收入</button>
+                <div class="dropdown-menu"  aria-labelledby="dropdownMenuLink">
+                    <button type="submit" class="dropdown-item" name="category" value="薪水">薪水</button>
+                    <button type="submit" class="dropdown-item" name="category" value="獎金">獎金</button>
+                    <button type="submit" class="dropdown-item" name="category" value="紅利">紅利</button>
+                    <button type="submit" class="dropdown-item" name="category" value="其他收入">其他收入</button>
                 </div>
             </div>
-        </form>
+            <div class="dropdown-submenu">
+                <button type="submit" class="dropdown-item" name="balance" value="deduct">支出</button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <button class="dropdown-item" type="submit" name="category" value="家居物業">家居物業</button>
+                    <button class="dropdown-item" type="submit" name="category" value="交通出行">交通出行</button>
+                    <button class="dropdown-item" type="submit" name="category" value="休閒娛樂">休閒娛樂</button>
+                    <button class="dropdown-item" type="submit" name="category" value="餐飲食品">餐飲食品</button>
+                    <button class="dropdown-item" type="submit" name="category" value="其他支出">其他支出</button>
+                </div>
+            </div>
+        </div>  
     </div>
-</div>
-
+</form>
 
 <ul class="list-group mb-4">
     <li class="list-group-item">

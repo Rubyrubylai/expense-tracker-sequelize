@@ -19,15 +19,15 @@ router.get('/', auth, (req, res) => {
             return b.date - a.date
         })
 
-        monthYear = dateAfter.monthYear(new Date())
-
-        let { balance, category } = req.query
-        
+        let { balance, category, monthYear } = req.query        
         
         //篩選收入或支出
         if (balance) {
             records = records.filter(records => {
                 return records.balance === balance
+            })
+            records = records.filter(records => {
+                return Number(records.date.getMonth()+1) === Number(monthYear.slice(5,7))
             })
         }
         //篩選類別
@@ -35,16 +35,19 @@ router.get('/', auth, (req, res) => {
             records = records.filter(records => {
                 return records.category === category
             })
-        }
-        //篩選月份
-        else if (req.query.monthYear) {
-            monthYear = req.query.monthYear
             records = records.filter(records => {
                 return Number(records.date.getMonth()+1) === Number(monthYear.slice(5,7))
             })
         }
+        //篩選月份
+        else if (monthYear) {
+            records = records.filter(records => {
+                return Number(records.date.getMonth()+1) === Number(monthYear.slice(5,7))
+            })
+        }
+        //預設為這個月
         else {
-            //預設為這個月
+            monthYear = dateAfter.monthYear(new Date())
             records = records.filter(records => {   
                 return records.date.getMonth() === new Date().getMonth()
             })

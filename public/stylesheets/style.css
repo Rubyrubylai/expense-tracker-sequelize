@@ -125,11 +125,15 @@
   margin-bottom: 20px;
 }
 
-.dropdown-custom {
-  margin: 0 auto;
-  width: 40%;
+.dropdown-month {
+  display: inline-block;
+  width: 45%;
 }
 
+.dropdown-category {
+  width: 45%;
+  float: right;
+}
 
 .font-deposit {
   color: blue;
