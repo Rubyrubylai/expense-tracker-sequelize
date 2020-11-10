@@ -77,8 +77,8 @@ router.get('/:id/editDeduct', auth, (req, res) => {
 		where: { id: req.params.id, UserId: req.user.id } 
 	})
 	.then(record => {
-		let deduct = true
 		let deposit = false
+		let deduct = true
 		editPage(record, res, deposit, deduct)
 	})
 	.catch(err => console.error(err))

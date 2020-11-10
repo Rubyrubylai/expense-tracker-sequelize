@@ -84,25 +84,38 @@
             {{/ifEquals}}
         </td>
         <td>{{this.name}}</td>
+        {{#ifEquals this.balance "deposit"}}
         <td>
-            {{#ifEquals this.balance "deposit"}}
             <p class="font-deposit">${{../this.amount}}</p>
-            {{/ifEquals}}
-            {{#ifEquals this.balance "deduct"}}
-            <p class="font-deduct">${{../this.amount}}</p>
-            {{/ifEquals}}
         </td>
         <td>
-            <a href="/records/{{this.id}}/editDeposit" class="btn btn-primary">修改</a>
-            <form action="/records/{{this.id}}/delete?_method=DELETE" method="POST" style="display:inline">
-                <button type="submit" class="btn btn-danger">刪除</button>
-            </form>
+            <a href="/records/{{../this.id}}/editDeposit" class="btn btn-primary">修改</a>
+            <button class="btn btn-danger" data-toggle="modal" data-target="#d{{../this.id}}">
+                刪除
+            </button>
         </td>
+        {{/ifEquals}}
+        {{#ifEquals this.balance "deduct"}}
+        <td>
+            <p class="font-deduct">${{../this.amount}}</p>
+        </td>
+        <td>
+            <a href="/records/{{../this.id}}/editDeduct" class="btn btn-primary">修改</a>
+            <button class="btn btn-danger" data-toggle="modal" data-target="#d{{../this.id}}">
+                刪除
+            </button>
+        </td>
+        {{/ifEquals}}
         </tr>
+
+        {{!-- pop up delete message --}}
+        {{> alert}}
+
     </tbody>
     {{/each}}
 </table>
 {{/each}}
+
 
 
 <div class="add-circle">
