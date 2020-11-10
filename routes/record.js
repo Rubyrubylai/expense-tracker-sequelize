@@ -17,6 +17,18 @@ router.get('/newDeduct', auth, (req, res) => {
 })
 
 //新增
+router.post('/newDeposit', auth, (req, res) => {
+	let deposit = true
+	let deduct = false
+	add(req, res, deposit, deduct)
+})
+
+router.post('/newDeduct', auth, (req, res) => {
+	let deposit = false
+	let deduct = true
+	add(req, res, deposit, deduct)
+})
+
 function add(req, res, deposit, deduct) {
 	const { name, date, category, amount, balance } = req.body
 	if (!name || !date || !category || !amount) {
@@ -41,25 +53,7 @@ function add(req, res, deposit, deduct) {
 	}	
 }
 
-router.post('/newDeposit', auth, (req, res) => {
-	let deposit = true
-	let deduct = false
-	add(req, res, deposit, deduct)
-})
-
-router.post('/newDeduct', auth, (req, res) => {
-	let deposit = false
-	let deduct = true
-	add(req, res, deposit, deduct)
-})
-
 //修改頁面
-function editPage(record, res, deposit, deduct) {
-	const date = record.date.toISOString().slice(0,10)
-	const { name, category, amount, id } = record.get()
-	return res.render('edit', { deposit, deduct, record, name, category, amount, id, date }) 
-}
-
 router.get('/:id/editDeposit', auth, (req, res) => {
 	Record.findOne({ 
 		where: { id: req.params.id, UserId: req.user.id } 
@@ -84,27 +78,13 @@ router.get('/:id/editDeduct', auth, (req, res) => {
 	.catch(err => console.error(err))
 })
 
-//修改
-function edit(record, req, res, deposit, deduct) {
-	const { name, date, category, amount, balance } = req.body
-		const { id } = req.params
-		if (!name || !date || !category || !amount) {
-			let errors = []
-			errors.push({ messages: '所有欄位皆為必填' })
-			return res.render('edit', { deposit, deduct, record, id, name, category, amount, date, errors })
-		} 
-		else {
-			record.name = name
-			record.date = date
-			record.category = category
-			record.amount = amount
-			record.balance = balance
-			record.save()
-			monthYear = dateAfter.monthYear(record.date)
-			return res.redirect(`/?monthYear=${monthYear}`) 
-		}
+function editPage(record, res, deposit, deduct) {
+	const date = record.date.toISOString().slice(0,10)
+	const { name, category, amount, id } = record.get()
+	return res.render('edit', { deposit, deduct, record, name, category, amount, id, date }) 
 }
 
+//修改
 router.put('/:id/editDeposit', auth, (req, res) => {
 	Record.findOne({ 
 		where: { id: req.params.id, UserId: req.user.id } 
@@ -128,6 +108,27 @@ router.put('/:id/editDeduct', auth, (req, res) => {
 	})
 	.catch(err => console.error(err))
 })
+
+function edit(record, req, res, deposit, deduct) {
+	const { name, date, category, amount, balance } = req.body
+		const { id } = req.params
+		if (!name || !date || !category || !amount) {
+			let errors = []
+			errors.push({ messages: '所有欄位皆為必填' })
+			return res.render('edit', { deposit, deduct, record, id, name, category, amount, date, errors })
+		} 
+		else {
+			record.name = name
+			record.date = date
+			record.category = category
+			record.amount = amount
+			record.balance = balance
+			record.save()
+			monthYear = dateAfter.monthYear(record.date)
+			return res.redirect(`/?monthYear=${monthYear}`) 
+		}
+}
+
 
 //刪除支出
 router.delete('/:id/delete', auth, (req, res) => {
