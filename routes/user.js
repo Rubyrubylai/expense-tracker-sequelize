@@ -30,13 +30,12 @@ router.post('/register', (req, res) => {
     let errors = []
     if (!name || !email || !password || !password2) {
         errors.push({ 'messages': '所有欄位皆為必填'})
-        console.log(errors)
     }
     if (password !== password2) {
         errors.push({ 'messages': '輸入的密碼不一致' })
     }
     if (errors.length !== 0) {
-        return res.render('register', { errors: errors })
+        return res.render('register', { name, email, password, errors })
     } else {
         bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(password, salt, (err, hash) => {
