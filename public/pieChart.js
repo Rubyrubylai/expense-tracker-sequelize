@@ -29,7 +29,7 @@ var myPieChart = new Chart(ctx, {
         '#E000E0',
         '#26FFFF',
         '#CCCCFF',
-        '#1C1CFF',
+        '#0000FA',
         '#FF8282',
         '#FFD78C',
         '#FFFFB5',
