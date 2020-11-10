@@ -1,10 +1,17 @@
 # 記帳小幫手
 使用者可以新增、刪除、過濾及查看支出和收入的紀錄資訊，並且透過圓餅圖分析各支出或收入所佔的百分比，是管理財務的好幫手
 
-![image](https://github.com/Rubyrubylai/expense-tracker-sequelize/blob/master/expense-tracker.PNG)
+![image](https://github.com/Rubyrubylai/expense-tracker-sequelize/tree/master/picture)
 
 ## 環境
 + Node.js v10.15.0
+
+## 測試帳號
+
+|name|email|password|
+|----|---|----|
+|Amy|amy@example.com|a123456|
+|Nick|nick@example.com|a123456|
 
 ## 安裝
 1. 開啟終端機，cd到存放專案位置並執行:
@@ -26,12 +33,27 @@ FACEBOOK_SECRET = "YOUR SECRET KEY"
 FACEBOOK_CALLBACK = http://localhost:3000/auth/facebook/callback
 ```
 
-5. 執行專案
+5. 在workbrench中新增database
+```
+create database record_sequelize
+```
+
+6. 新增migrate
+```
+npx sequelize db:migrate
+```
+
+7. 新增種子資料
+```
+npx sequelize db:seed:all
+```
+
+8. 執行專案
 ```
 npm run dev
 ```
 
-6. 在本機端 http://localhost:3000 開啟網址
+9. 在本機端 http://localhost:3000 開啟網址
 
 ## 功能列表
 + 網站功能
