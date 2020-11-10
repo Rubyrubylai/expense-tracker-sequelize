@@ -173,3 +173,16 @@ td{
   text-decoration: none;
 }
 
+.block-color {
+  display: inline;
+  padding:5px ; 
+  border-radius: 10px;
+}
+
+.category {
+  display: inline;
+}
+
+.amount, .money {
+  float: right;
+}
