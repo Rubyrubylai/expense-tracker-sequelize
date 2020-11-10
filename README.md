@@ -45,6 +45,7 @@ npm run dev
 |編輯|/records/:id/editDeposit|進入編輯支出頁面後，可以切換為編輯收入|
 
 + 統計圖表
+
 |功能|URL|描述|
 |----|---|----|
 |首頁|/pieChart/deduct|查看該月的支出分析，並可切換月份|
