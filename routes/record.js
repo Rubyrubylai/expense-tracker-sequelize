@@ -6,26 +6,25 @@ const db = require('../models')
 const Record = db.Record
 
 //新增頁面
-router.get('/newDeposit', auth, (req, res) => {
-	let deposit = true
-	res.render('new', { deposit })
-})
-
-router.get('/newDeduct', auth, (req, res) => {
+router.get('/new', auth, (req, res) => {
 	let deduct = true
 	res.render('new', { deduct })
 })
 
-//新增
-router.post('/newDeposit', auth, (req, res) => {
-	let deposit = true
-	let deduct = false
-	add(req, res, deposit, deduct)
-})
 
-router.post('/newDeduct', auth, (req, res) => {
-	let deposit = false
-	let deduct = true
+//新增
+router.post('/new', auth, (req, res) => {
+	console.log(req.query)
+	let deposit
+	let deduct
+	if (req.query === 'deposit') {
+		deposit = true
+		deduct = false
+	}
+	else {
+		deposit = false
+		deduct = true
+	}
 	add(req, res, deposit, deduct)
 })
 
