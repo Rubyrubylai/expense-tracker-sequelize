@@ -63,7 +63,7 @@ router.get('/', auth, (req, res) => {
             let currentDate = record.date.getDate()
             record.date = currentYear + '/' + currentMonth + '/' + currentDate
             //總額
-            if (record.balance === '收入') {
+            if (record.balance === 'deposit') {
                 depositAmount += record.amount
             } 
             else {
@@ -94,7 +94,7 @@ router.get('/', auth, (req, res) => {
 
         let totalAmount = depositAmount - deductAmount
         
-        return res.render('index', { endRecord, depositAmount, deductAmount, totalAmount, monthYear })
+        return res.render('index', { endRecord, depositAmount, deductAmount, totalAmount, monthYear, balance })
 
     })
     .catch(err => console.error(err))   
