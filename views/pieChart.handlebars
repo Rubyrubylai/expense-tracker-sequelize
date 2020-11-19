@@ -8,8 +8,8 @@
           <input class="btn btn-sort" type="month" name="monthYear" value="{{monthYear}}" onchange="this.form.submit();">
         </form>
       </div>
-      <a href="/pieChart/deposit?monthYear={{monthYear}}" type="button" class="btn deposit-checked" name="balance" value="deposit">收入 ${{depositAmount}}</a>
-      <a href="/pieChart/deduct?monthYear={{monthYear}}" type="button" class="btn deduct-unchecked" name="balance" value="deduct">支出 ${{deductAmount}}</a>
+      <a href="/pieChart/deposit?monthYear={{monthYear}}" type="button" class="btn deposit-checked" name="balance" value="收入">收入 ${{depositAmount}}</a>
+      <a href="/pieChart/deduct?monthYear={{monthYear}}" type="button" class="btn deduct-unchecked" name="balance" value="支出">支出 ${{deductAmount}}</a>
   </center>
   {{/if}}
   {{#if deduct}}
@@ -19,8 +19,8 @@
             <input class="btn btn-sort" type="month" name="monthYear" value="{{monthYear}}" onchange="this.form.submit();">
         </form>
       </div>
-      <a href="/pieChart/deposit?monthYear={{monthYear}}" type="button" class="btn deposit-unchecked" name="balance" value="deposit">收入 ${{depositAmount}}</a>
-      <a href="/pieChart/deduct?monthYear={{monthYear}}" type="button" class="btn deduct-checked" name="balance" value="deduct">支出 ${{deductAmount}}</a>
+      <a href="/pieChart/deposit?monthYear={{monthYear}}" type="button" class="btn deposit-unchecked" name="balance" value="收入">收入 ${{depositAmount}}</a>
+      <a href="/pieChart/deduct?monthYear={{monthYear}}" type="button" class="btn deduct-checked" name="balance" value="支出">支出 ${{deductAmount}}</a>
   </center>
   {{/if}}
 </div>

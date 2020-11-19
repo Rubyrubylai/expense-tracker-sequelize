@@ -29,6 +29,7 @@ router.post('/new', auth, (req, res) => {
 })
 
 function add(req, res, deposit, deduct) {
+	console.log(req.body.balance)
 	const { name, date, category, amount, balance } = req.body
 	if (!name || !date || !category || !amount) {
 		let errors = []

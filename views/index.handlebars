@@ -79,7 +79,7 @@
             {{/ifEquals}}
         </td>
         <td>{{this.name}}</td>
-        {{#ifEquals this.balance "deposit"}}
+        {{#ifEquals this.balance "收入"}}
         <td>
             <p class="font-deposit">${{../this.amount}}</p>
         </td>
@@ -90,7 +90,7 @@
             </button>
         </td>
         {{/ifEquals}}
-        {{#ifEquals this.balance "deduct"}}
+        {{#ifEquals this.balance "支出"}}
         <td>
             <p class="font-deduct">${{../this.amount}}</p>
         </td>
@@ -114,7 +114,7 @@
 
 
 <div class="add-circle">
-    <a href="/records/newDeduct">
+    <a href="/records/new">
         <button class="rounded-pill btn btn-warning btn-lg">
             <i class="fas fa-plus" style="color: white;"></i>
         </button>
