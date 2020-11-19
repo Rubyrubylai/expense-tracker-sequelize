@@ -61,7 +61,7 @@ function show(deposit, deduct, records, req, res) {
 
   //顯示收入和支出總額
   records.forEach((record, index) => {    
-    if (record.balance === 'deposit') {
+    if (record.balance === '收入') {
         depositAmount += record.amount
     } 
     else {
@@ -71,10 +71,10 @@ function show(deposit, deduct, records, req, res) {
 
   //顯示收入或支出
   if (deposit === true) {
-    records = records.filter(record => record.balance === 'deposit')
+    records = records.filter(record => record.balance === '收入')
   } 
   if (deduct === true) {
-    records = records.filter(record => record.balance === 'deduct')
+    records = records.filter(record => record.balance === '支出')
   }
 
   //計算收入或支出總額，用來做百分比

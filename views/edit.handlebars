@@ -1,20 +1,10 @@
 <div class="form">
-    {{#if deposit}} 
-    <form action="/records/{{id}}/editDeposit?_method=PUT" method="POST">
-    <input style="display: none;" type="string" name="balance" value="deposit">
-    <center>
-        <a href="/records/{{id}}/editDeposit?_method=PUT" type="button" class="btn deposit-checked" name="balance" value="deposit">收入</a>
-        <a href="/records/{{id}}/editDeduct?_method=PUT" type="button" class="btn deduct-unchecked" name="balance" value="deduct">支出</a>
-    </center>
-    {{/if}}
-    {{#if deduct}} 
-    <form action="/records/{{id}}/editDeduct?_method=PUT" method="POST">
-    <input style="display: none;" type="string" name="balance" value="deduct">
-    <center>
-        <a href="/records/{{id}}/editDeposit?_method=PUT" type="button" class="btn deposit-unchecked" name="balance" value="deposit">收入</a>
-        <a href="/records/{{id}}/editDeduct?_method=PUT" type="button" class="btn deduct-checked" name="balance" value="deduct">支出</a>
-    </center>
-    {{/if}}        
+    <form action="/records/{{id}}/edit?_method=PUT" method="POST">
+        <center>
+            <input type="button" class="btn deposit-unchecked" id="deposit" value="收入">
+            <input type="button" class="btn deduct-checked" id="deduct" value="支出">
+            <input type="hidden" name="balance" id="balance" value="{{balance}}">
+        </center>      
         <div class="row my-4">
             <div class="col-2"><label for="date">日期*:</label></div>
             <div class="col-10">
@@ -25,19 +15,6 @@
             <div class="col-2"><label for="category">類別*:</label></div>
             <div class="col-10">
                 <select class="form-control" id="category" name="category">
-                    {{#if deduct}} 
-                    <option {{#ifEquals category '家居物業'}} selected {{/ifEquals}}>家居物業</option>
-                    <option {{#ifEquals category '交通出行'}} selected {{/ifEquals}}>交通出行</option>
-                    <option {{#ifEquals category '休閒娛樂'}} selected {{/ifEquals}}>休閒娛樂</option>
-                    <option {{#ifEquals category '餐飲食品'}} selected {{/ifEquals}}>餐飲食品</option>
-                    <option {{#ifEquals category '其他支出'}} selected {{/ifEquals}}>其他支出</option>
-                    {{/if}}   
-                    {{#if deposit}}   
-                    <option {{#ifEquals category "薪水"}} selected {{/ifEquals}}>薪水</option>
-                    <option {{#ifEquals category "獎金"}} selected {{/ifEquals}}>獎金</option>
-                    <option {{#ifEquals category "紅利"}} selected {{/ifEquals}}>紅利</option>
-                    <option {{#ifEquals category "其他收入"}} selected {{/ifEquals}}>其他收入</option>
-                    {{/if}}   
                 </select>
             </div>
         </div>
@@ -48,12 +25,14 @@
             </div>
         </div>
         <div class="row my-4">
-            <div class="col-2"><label for="name">名稱*:</label></div>
+            <div class="col-2"><label for="billName">名稱*:</label></div>
             <div class="col-10">
-                <input type="text" class="form-control" id="name" name="name" value="{{name}}">
+                <input type="text" class="form-control" id="billName" name="name" value="{{name}}">
             </div>
         </div>
         {{>messages}}
-        <center><button type="submit" class="btn btn-warning btn-lg" style="width: 200px">送出</button></center>
+        <center><button type="submit" id="submit" class="btn btn-warning btn-lg" style="width: 200px">送出</button></center>
     </form>
 </div>
+
+<script src="/index.js"></script>

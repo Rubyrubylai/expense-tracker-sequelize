@@ -1,10 +1,10 @@
 <div class="form">
     <form action="/records/new" method="POST">
-    <center>
-        <input type="button" class="btn deposit-unchecked" id="deposit" value="收入">
-        <input type="button" class="btn deduct-checked" id="deduct" value="支出">
-        <input type="hidden" name="balance" id="balance" value="支出">
-    </center>     
+        <center>
+            <input type="button" class="btn deposit-unchecked" id="deposit" value="收入">
+            <input type="button" class="btn deduct-checked" id="deduct" value="支出">
+            <input type="hidden" name="balance" id="balance" value="支出">
+        </center>     
         <div class="row my-4">
             <div class="col-2"><label for="date">日期*:</label></div>
             <div class="col-10">
@@ -15,11 +15,6 @@
             <div class="col-2"><label for="category">類別*:</label></div>
             <div class="col-10">
                 <select class="form-control" id="category" name="category">
-                    <option {{#ifEquals category '家居物業'}} selected {{/ifEquals}}>家居物業</option>
-                    <option {{#ifEquals category '交通出行'}} selected {{/ifEquals}}>交通出行</option>
-                    <option {{#ifEquals category '休閒娛樂'}} selected {{/ifEquals}}>休閒娛樂</option>
-                    <option {{#ifEquals category '餐飲食品'}} selected {{/ifEquals}}>餐飲食品</option>
-                    <option {{#ifEquals category '其他支出'}} selected {{/ifEquals}}>其他支出</option>
                 </select>
             </div>
         </div>
