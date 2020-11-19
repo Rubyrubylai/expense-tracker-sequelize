@@ -1,28 +1,20 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 <div class="btn-balance">
-  {{#if deposit}}
   <center>
+    <form action="/pieChart" method="GET">
       <div class="month-btn">
-        <form action="/pieChart/deposit" method="GET">
-          <input class="btn btn-sort" type="month" name="monthYear" value="{{monthYear}}" onchange="this.form.submit();">
-        </form>
+        <input class="btn btn-sort" type="month" name="monthYear" value="{{monthYear}}" onchange="this.form.submit();"> 
       </div>
-      <a href="/pieChart/deposit?monthYear={{monthYear}}" type="button" class="btn deposit-checked" name="balance" value="收入">收入 ${{depositAmount}}</a>
-      <a href="/pieChart/deduct?monthYear={{monthYear}}" type="button" class="btn deduct-unchecked" name="balance" value="支出">支出 ${{deductAmount}}</a>
+      {{#if deduct}}
+      <button type="submit" class="btn deposit-unchecked" id="deposit" name="balance" value="收入">收入 ${{depositAmount}}</button>
+      <button type="submit" class="btn deduct-checked" id="deduct" name="balance" value="支出">支出 ${{deductAmount}}</button>
+      {{else}}
+      <button type="submit" class="btn deposit-checked" id="deposit" name="balance" value="收入">收入 ${{depositAmount}}</button>
+      <button type="submit" class="btn deduct-unchecked" id="deduct" name="balance" value="支出">支出 ${{deductAmount}}</button>
+      {{/if}}
+    </form>
   </center>
-  {{/if}}
-  {{#if deduct}}
-  <center>
-      <div class="month-btn">
-        <form action="/pieChart/deduct" method="GET">
-            <input class="btn btn-sort" type="month" name="monthYear" value="{{monthYear}}" onchange="this.form.submit();">
-        </form>
-      </div>
-      <a href="/pieChart/deposit?monthYear={{monthYear}}" type="button" class="btn deposit-unchecked" name="balance" value="收入">收入 ${{depositAmount}}</a>
-      <a href="/pieChart/deduct?monthYear={{monthYear}}" type="button" class="btn deduct-checked" name="balance" value="支出">支出 ${{deductAmount}}</a>
-  </center>
-  {{/if}}
 </div>
 
 <div class="chart-container">
