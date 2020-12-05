@@ -42,7 +42,6 @@ router.get('/:id/edit', auth, (req, res) => {
 		where: { id: req.params.id, UserId: req.user.id } 
 	})
 	.then(record => {
-		console.log(record)
 		const date = record.date.toISOString().slice(0,10)
 		const { name, category, amount, id, balance } = record.get()
 		return res.render('edit', { name, category, amount, id, balance, date }) 

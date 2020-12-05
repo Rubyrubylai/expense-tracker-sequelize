@@ -4,7 +4,6 @@ var deduct = document.getElementById('deduct')
 var category = document.getElementById('category')
 
 function record(obj) {
-  console.log($(obj).val())
   if ($(obj).val() === '收入') {
     depositF()
     document.getElementById('balance').value = $(obj).val()
