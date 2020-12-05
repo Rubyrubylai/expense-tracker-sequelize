@@ -1,8 +1,8 @@
 <div class="form">
     <form action="/records/new" method="POST">
         <center>
-            <input type="button" class="btn deposit-unchecked" id="deposit" value="收入">
-            <input type="button" class="btn deduct-checked" id="deduct" value="支出">
+            <input type="button" class="btn deposit-unchecked" id="deposit" onclick="record(this)" value="收入">
+            <input type="button" class="btn deduct-checked" id="deduct" onclick="record(this)" value="支出">
             <input type="hidden" name="balance" id="balance" value="支出">
         </center>     
         <div class="row my-4">
