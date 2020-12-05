@@ -71,26 +71,49 @@ router.get('/', auth, (req, res) => {
             } 
         })
 
-        //如果日期相同則合併
-        let tempArr = []
-        let endRecord = []
-        for (let i=0; i<records.length; i++) { 
-            if (tempArr.indexOf(records[i].date) === -1) {
-                endRecord.push({
-                    date: records[i].date,
-                    children: [records[i]]
+        let endRecord = {}
+        records.forEach(record => { 
+            if(endRecord[record.date]) {
+                endRecord[record.date].push({
+                    name: record.name,
+                    amount: record.amount,
+                    category: record.category,
+                    balance: record.balance,
+                    id: record.id
                 })
-                tempArr.push(records[i].date)
+            } else {
+                endRecord[record.date] = [{
+                    name: record.name,
+                    amount: record.amount,
+                    category: record.category,
+                    balance: record.balance,
+                    id: record.id
+                }]
             }
-            else {
-                for (let j=0; j<endRecord.length; j++) {
-                    if (endRecord[j].date === records[i].date) {
-                        endRecord[j].children.push(records[i])
-                        break
-                    }
-                }
-            }
-        }
+        })
+
+        console.log(endRecord)
+
+        // //如果日期相同則合併
+        // let tempArr = []
+        // let endRecord = []
+        // for (let i=0; i<records.length; i++) { 
+        //     if (tempArr.indexOf(records[i].date) === -1) {
+        //         endRecord.push({
+        //             date: records[i].date,
+        //             children: [records[i]]
+        //         })
+        //         tempArr.push(records[i].date)
+        //     }
+        //     else {
+        //         for (let j=0; j<endRecord.length; j++) {
+        //             if (endRecord[j].date === records[i].date) {
+        //                 endRecord[j].children.push(records[i])
+        //                 break
+        //             }
+        //         }
+        //     }
+        // }
 
         let totalAmount = depositAmount - deductAmount
         

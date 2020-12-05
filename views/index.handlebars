@@ -44,9 +44,9 @@
 {{#each endRecord}}
 <table class="table">
     <thead>
-        <tr>{{this.date}}</tr>
+        <tr>{{@key}}</tr>
     </thead>
-    {{#each this.children}}
+    {{#each this}}
     <tbody>
         <tr id="records">
         <td>
