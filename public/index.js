@@ -2,6 +2,16 @@
 var deposit = document.getElementById('deposit')
 var deduct = document.getElementById('deduct')
 var category = document.getElementById('category')
+var selectedCategory = document.getElementById("selectedCategory").value
+const h = (selectedCategory ===  "家居物業") ? 'selected' : ''
+const t = (selectedCategory ===  "交通出行") ? 'selected' : ''
+const l = (selectedCategory ===  "休閒娛樂") ? 'selected' : ''
+const r = (selectedCategory ===  "餐飲食品") ? 'selected' : ''
+const e = (selectedCategory ===  "其他支出") ? 'selected' : ''
+const s = (selectedCategory ===  "薪水") ? 'selected' : ''
+const b = (selectedCategory ===  "獎金") ? 'selected' : ''
+const d = (selectedCategory ===  "紅利") ? 'selected' : ''
+const i = (selectedCategory ===  "其他收入") ? 'selected' : ''
 
 function record(obj) {
   if ($(obj).val() === '收入') {
@@ -28,10 +38,10 @@ function depositF() {
   deduct.classList.remove('deduct-checked')
   deduct.classList.add('deduct-unchecked')
   category.innerHTML = `
-  <option {{#ifEquals category "薪水"}} selected {{/ifEquals}}>薪水</option>
-  <option {{#ifEquals category "獎金"}} selected {{/ifEquals}}>獎金</option>
-  <option {{#ifEquals category "紅利"}} selected {{/ifEquals}}>紅利</option>
-  <option {{#ifEquals category "其他收入"}} selected {{/ifEquals}}>其他收入</option>
+  <option ${s}>薪水</option>
+  <option ${b}>獎金</option>
+  <option ${d}>紅利</option>
+  <option ${i}>其他收入</option>
   `
 }
 
@@ -41,11 +51,11 @@ function deductF() {
   deposit.classList.remove('deposit-checked')
   deposit.classList.add('deposit-unchecked')
   category.innerHTML = `
-  <option {{#ifEquals category '家居物業'}} selected {{/ifEquals}}>家居物業</option>
-  <option {{#ifEquals category '交通出行'}} selected {{/ifEquals}}>交通出行</option>
-  <option {{#ifEquals category '休閒娛樂'}} selected {{/ifEquals}}>休閒娛樂</option>
-  <option {{#ifEquals category '餐飲食品'}} selected {{/ifEquals}}>餐飲食品</option>
-  <option {{#ifEquals category '其他支出'}} selected {{/ifEquals}}>其他支出</option>
+  <option ${h}>家居物業</option>
+  <option ${t}>交通出行</option>
+  <option ${l}>休閒娛樂</option>
+  <option ${r}>餐飲食品</option>
+  <option ${e}>其他支出</option>
   `
 }
 
