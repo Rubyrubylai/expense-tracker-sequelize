@@ -11,14 +11,10 @@ router.get('/', auth, (req, res) => {
     Record.findAll({ 
         where: { UserId: req.user.id },
         raw: true,
-        nest: true
+        nest: true,
+        order: [[ 'date', 'DESC']]
     })
     .then(records => {
-        //日期由大到小排序
-        records.sort((a, b) => {
-            return b.date - a.date
-        })
-
         let { balance, category, monthYear } = req.query        
         
         //篩選收入或支出
@@ -56,7 +52,7 @@ router.get('/', auth, (req, res) => {
         let depositAmount = 0
         let deductAmount = 0
 
-        records.forEach((record, index) => {
+        records.forEach((record) => {
             //日期格式
             let currentYear = record.date.getFullYear()
             let currentMonth = record.date.getMonth() + 1
