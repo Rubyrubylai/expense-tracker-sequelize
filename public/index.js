@@ -15,6 +15,7 @@ const ENUM = {
   }
 }
 
+// 編輯頁面
 record(document.getElementById('balance'))
 
 function record(type) {

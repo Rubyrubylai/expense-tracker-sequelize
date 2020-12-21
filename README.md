@@ -10,8 +10,8 @@
 
 |name|email|password|
 |----|---|----|
-|Amy|amy@example.com|a123456|
-|Nick|nick@example.com|a123456|
+|User1|user1@example.com|a123456|
+|User2|user2@example.com|a123456|
 
 ## 安裝
 1. 開啟終端機，cd到存放專案位置並執行:
