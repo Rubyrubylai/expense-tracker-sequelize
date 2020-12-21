@@ -91,7 +91,7 @@
   font-weight:bold;
 }
 
-.deposit-checked {
+.deposit {
   border: 1px solid blue;
   border-radius: 5px;
   color: blue;
@@ -99,7 +99,7 @@
   margin: 5px;
 }
 
-.deduct-checked {
+.deduct {
   border: 1px solid red;
   border-radius: 5px;
   color: red;
@@ -107,7 +107,7 @@
   margin: 5px;
 }
 
-.deduct-unchecked, .deposit-unchecked {
+.unchecked {
   border: 1px solid grey;
   border-radius: 5px;
   color: grey;

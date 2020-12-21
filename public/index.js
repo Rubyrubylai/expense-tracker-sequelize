@@ -2,61 +2,41 @@
 var deposit = document.getElementById('deposit')
 var deduct = document.getElementById('deduct')
 var category = document.getElementById('category')
-var selectedCategory = document.getElementById("selectedCategory").value
-const h = (selectedCategory ===  "家居物業") ? 'selected' : ''
-const t = (selectedCategory ===  "交通出行") ? 'selected' : ''
-const l = (selectedCategory ===  "休閒娛樂") ? 'selected' : ''
-const r = (selectedCategory ===  "餐飲食品") ? 'selected' : ''
-const e = (selectedCategory ===  "其他支出") ? 'selected' : ''
-const s = (selectedCategory ===  "薪水") ? 'selected' : ''
-const b = (selectedCategory ===  "獎金") ? 'selected' : ''
-const d = (selectedCategory ===  "紅利") ? 'selected' : ''
-const i = (selectedCategory ===  "其他收入") ? 'selected' : ''
+var selectedCategory = document.getElementById('selectedCategory').value
 
-function record(obj) {
-  if ($(obj).val() === '收入') {
-    depositF()
-    document.getElementById('balance').value = $(obj).val()
-  }
-  else {
-    deductF()
-    document.getElementById('balance').value = $(obj).val()
+const ENUM = {
+  '收入': {
+    title: '收入',
+    options: [ '薪水', '獎金', '紅利', '其他收入' ]
+  },
+  '支出': {
+    title: '支出',
+    options: [ '家居物業', '交通出行', '休閒娛樂', '餐飲食品', '其他支出' ]
   }
 }
 
-//進到頁面時，顯示收入或支出
-if (document.getElementById('balance').value === '收入') {
-  depositF()
-}
-else {
-  deductF()
+record(document.getElementById('balance'))
+
+function record(type) {
+  document.getElementById('balance').value = type.value
+  displayFunction(ENUM[type.value])
 }
 
-function depositF() {
-  deposit.classList.remove('deposit-unchecked')
-  deposit.classList.add('deposit-checked')
-  deduct.classList.remove('deduct-checked')
-  deduct.classList.add('deduct-unchecked')
-  category.innerHTML = `
-  <option ${s}>薪水</option>
-  <option ${b}>獎金</option>
-  <option ${d}>紅利</option>
-  <option ${i}>其他收入</option>
-  `
-}
-
-function deductF() {
-  deduct.classList.remove('deduct-unchecked')
-  deduct.classList.add('deduct-checked')
-  deposit.classList.remove('deposit-checked')
-  deposit.classList.add('deposit-unchecked')
-  category.innerHTML = `
-  <option ${h}>家居物業</option>
-  <option ${t}>交通出行</option>
-  <option ${l}>休閒娛樂</option>
-  <option ${r}>餐飲食品</option>
-  <option ${e}>其他支出</option>
-  `
+function displayFunction(item) {
+  if (item.title === '收入') {
+    deposit.classList.remove('unchecked')
+    deduct.classList.add('unchecked')
+  }
+  else if (item.title === '支出') {
+    deduct.classList.remove('unchecked')
+    deposit.classList.add('unchecked')
+  }
+  category.innerHTML= ''
+  item.options.forEach(option => {
+    category.innerHTML += `
+      <option ${(selectedCategory ===  option) ? 'selected' : ''}>${option}</option>
+    `
+  })
 }
 
 //若表單沒有填寫完整，預防進到下一頁
